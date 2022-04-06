@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs'
 import path from 'path'
 import type { Plugin } from 'vite'
-import type { Routes } from './types/routes'
+import { SourceMapGenerator } from 'source-map'
 
 interface AntdLayoutPluginOptions {
 }
@@ -40,8 +40,15 @@ export default function antdLayout(options?: AntdLayoutPluginOptions): Plugin {
         return path.resolve(baseDir, 'layout', source)
     },
     load(id) {
-      if (id === virtualModuleIdExt)
-        return readFileSync(path.join(baseDir, 'layout/BasicLayout.tsx'), 'utf-8')
+      const filePath = path.join(baseDir, 'layout/BasicLayout.tsx')
+      if (id === virtualModuleIdExt) {
+        return {
+          code: readFileSync(filePath, 'utf-8'),
+          map: new SourceMapGenerator({
+            file: filePath,
+          }).toString(),
+        }
+      }
     },
   }
 }
