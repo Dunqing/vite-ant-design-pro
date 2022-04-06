@@ -1,29 +1,16 @@
 import type { BasicLayoutProps, MenuDataItem } from '@ant-design/pro-layout'
 import ProLayout from '@ant-design/pro-layout'
 import { useMemo } from 'react'
-import { Link, matchRoutes } from 'react-router-dom'
+import { Link, matchRoutes, useLocation } from 'react-router-dom'
 import { WithExceptionOpChildren } from '../components/Exception'
 import getLayoutRenderConfig from './getLayoutRenderConfig'
 
-const transformRoute = (routes: any[]): MenuDataItem[] => {
-  return []
-}
-
-const getMatchMenu = (...args: any) => {
-  return {}
-}
-
 const BasicLayout = (props: any) => {
-  const { logo, children, userConfig = {}, location, route, ...restProps } = props
+  const { logo, children, userConfig = {}, routes, ...restProps } = props
 
-  const currentPathConfig = useMemo(() => {
-    const menuData = transformRoute(
-      props?.route?.routes || [],
-    )
-    // 动态路由匹配
-    const currentPathConfig = getMatchMenu(location.pathname, menuData).pop()
-    return currentPathConfig || {}
-  }, [location?.pathname, props?.route?.routes])
+  const location = useLocation()
+
+  const currentPathConfig = matchRoutes(routes, location)?.[0]
 
   // layout 是否渲染相关
   const layoutRestProps: BasicLayoutProps & {
@@ -43,7 +30,7 @@ const BasicLayout = (props: any) => {
 
   return (
     <ProLayout
-      route={route}
+      route={{ routes }}
       location={location}
       title={userConfig?.name || userConfig?.title}
       navTheme="dark"
