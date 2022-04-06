@@ -1,11 +1,12 @@
 
 import { Avatar, Dropdown, Menu, Spin } from 'antd'
 import { LogoutOutlined } from '@ant-design/icons'
+import type { LayoutProps } from '../types'
 export default function renderRightContent(
-  logout: (() => void) | undefined,
-  loading: boolean,
-  initialState: any,
+  options: LayoutProps['rightContentOptions'],
 ) {
+  const { loading, logout, userInfo } = options || {}
+
   const menu = (
     <Menu className="umi-plugin-layout-menu">
       <Menu.Item
@@ -25,12 +26,12 @@ export default function renderRightContent(
         size="small"
         className="umi-plugin-layout-avatar"
         src={
-          initialState?.avatar
+          userInfo?.avatar
             || 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
         }
         alt="avatar"
       />
-      <span className="umi-plugin-layout-name">{initialState?.name}</span>
+      <span className="umi-plugin-layout-name">{userInfo?.name}</span>
     </span>
   )
   if (loading) {

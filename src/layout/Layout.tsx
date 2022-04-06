@@ -8,7 +8,7 @@ import { traverseRoutes } from '../utils/traverseRoutes'
 import './index.less'
 
 const Layout = (props: LayoutProps) => {
-  const { fallback = 'loading...', children, rightContentRender, childrenRender = children => children, routes, ...restProps } = props
+  const { fallback = 'loading...', rightContentProps, children, rightContentRender, childrenRender = children => children, routes, ...restProps } = props
 
   const realRoutes = useMemo(() => traverseRoutes(routes), [routes])
 
@@ -54,11 +54,7 @@ const Layout = (props: LayoutProps) => {
       rightContentRender={
         rightContentRender !== false
         && (() => {
-          return renderRightContent?.(
-            () => {},
-            false,
-            {},
-          )
+          return renderRightContent?.(rightContentProps)
         })
       }
     >
