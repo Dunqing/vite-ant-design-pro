@@ -5,7 +5,7 @@ import { Link, matchRoutes, renderMatches, useLocation, useNavigate } from 'reac
 import { Exception } from '../components/Exception'
 import type { RoutesType } from '../types/routes'
 import renderRightContent from '../utils/renderRightContent'
-// import './index.less'
+import './index.less'
 
 const traverseRoutes = (routes?: RoutesType): RoutesType => {
   return routes?.map((route) => {

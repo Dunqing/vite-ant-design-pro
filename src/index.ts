@@ -3,10 +3,7 @@ import path from 'path'
 import type { Plugin } from 'vite'
 import { SourceMapGenerator } from 'source-map'
 
-interface AntdLayoutPluginOptions {
-}
-
-export default function antdLayout(options?: AntdLayoutPluginOptions): Plugin {
+export default function antdLayout(): Plugin {
   const virtualModuleId = '@virtual-antd-layout'
   const virtualModuleIdExt = `${virtualModuleId}.tsx`
 
@@ -40,7 +37,7 @@ export default function antdLayout(options?: AntdLayoutPluginOptions): Plugin {
         return path.resolve(baseDir, 'layout', source)
     },
     load(id) {
-      const filePath = path.join(baseDir, 'layout/BasicLayout.tsx')
+      const filePath = path.join(baseDir, 'layout/Layout.tsx')
       if (id === virtualModuleIdExt) {
         return {
           code: readFileSync(filePath, 'utf-8'),
