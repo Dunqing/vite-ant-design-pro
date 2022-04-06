@@ -33,28 +33,6 @@ const Exception403 = () => {
   />
 }
 
-export interface IRouteMenuConfig {
-  /** 当前菜单名 */
-  name: string
-  /** antd 的 icon name 和 url */
-  icon?: string
-  /** 在菜单中隐藏他的子项 */
-  hideChildren?: boolean
-  /** 默认为false 在菜单中只隐藏此项，子项往上提，仍旧展示 */
-  flatMenu?: boolean
-  [key: string]: any
-}
-
-export interface IRouteLayoutConfig {
-  /** 默认 false */
-  hideMenu?: boolean
-  /** 默认 false */
-  hideNav?: boolean
-  /** 默认 false */
-  hideFooter?: boolean
-  [key: string]: any
-}
-
 const Exception: React.FC<{
   matches: ReturnType<typeof matchRoutes>
   children: any
