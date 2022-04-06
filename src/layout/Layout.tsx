@@ -1,5 +1,5 @@
 import ProLayout from '@ant-design/pro-layout'
-import { useMemo } from 'react'
+import { Suspense, useMemo } from 'react'
 import { Link, matchRoutes, renderMatches, useLocation, useNavigate } from 'react-router-dom'
 import { Exception } from '../components/Exception'
 import type { LayoutProps } from '../types'
@@ -8,7 +8,7 @@ import { traverseRoutes } from '../utils/traverseRoutes'
 import './index.less'
 
 const Layout = (props: LayoutProps) => {
-  const { children, rightContentRender, childrenRender = children => children, routes, ...restProps } = props
+  const { fallback = 'loading...', children, rightContentRender, childrenRender = children => children, routes, ...restProps } = props
 
   const realRoutes = useMemo(() => traverseRoutes(routes), [routes])
 
@@ -62,14 +62,16 @@ const Layout = (props: LayoutProps) => {
         })
       }
     >
-      <Exception
-        matches={matchResult}
-      >
-        {childrenRender(<>
-          {children}
-          {routesElement}
-        </>, props)}
-      </Exception>
+      <Suspense fallback={fallback}>
+        <Exception
+          matches={matchResult}
+        >
+          {childrenRender(<>
+            {children}
+            {routesElement}
+          </>, props)}
+        </Exception>
+      </Suspense>
     </ProLayout>
   )
 }

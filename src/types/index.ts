@@ -6,4 +6,8 @@ export * from './routes'
 export interface LayoutProps extends BasicLayoutProps {
   childrenRender: (children: React.ReactNode, props: LayoutProps) => React.ReactNode
   routes: RoutesType
+  /**
+   * Suspense's fallback
+   */
+  fallback: React.ReactNode
 }
