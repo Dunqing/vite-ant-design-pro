@@ -1,14 +1,15 @@
-import type { BasicLayoutProps } from '@ant-design/pro-layout'
 import ProLayout from '@ant-design/pro-layout'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { Link, matchRoutes, renderMatches, useLocation, useNavigate } from 'react-router-dom'
 import { Exception } from '../components/Exception'
+import type { LayoutProps } from '../types'
 import renderRightContent from '../utils/renderRightContent'
 import { traverseRoutes } from '../utils/traverseRoutes'
 import './index.less'
 
-const BasicLayout = (props: any) => {
-  const { logo, children, userConfig = {}, routes, ...restProps } = props
+const Layout = (props: LayoutProps) => {
+  const { children, rightContentRender, childrenRender = children => children, routes, ...restProps } = props
+
   const realRoutes = useMemo(() => traverseRoutes(routes), [routes])
 
   const location = useLocation()
@@ -17,21 +18,6 @@ const BasicLayout = (props: any) => {
   const routesElement = renderMatches(matchResult)
 
   const navigate = useNavigate()
-
-  // layout 是否渲染相关
-  const layoutRestProps: BasicLayoutProps & {
-    rightContentRender?:
-    | false
-    | ((
-      props: BasicLayoutProps,
-      dom: React.ReactNode,
-      config: any,
-    ) => React.ReactNode)
-  } = {
-    itemRender: route => <Link to={route.path}>{route.breadcrumbName}</Link>,
-    ...userConfig,
-    ...restProps,
-  }
 
   return (
     <ProLayout
@@ -45,9 +31,6 @@ const BasicLayout = (props: any) => {
         e.preventDefault()
         navigate('/')
       }}
-      menu={ { locale: userConfig.locale } }
-      formatMessage={userConfig?.formatMessage}
-      logo={logo}
       menuItemRender={(menuItemProps, defaultDom) => {
         if (menuItemProps.isUrl)
           return defaultDom
@@ -64,9 +47,12 @@ const BasicLayout = (props: any) => {
       disableContentMargin
       fixSiderbarcomponent
       fixedHeader
-      {...layoutRestProps}
+      itemRender={route => <Link to={route.path}>{route.breadcrumbName}</Link>}
+      {
+        ...restProps
+      }
       rightContentRender={
-        layoutRestProps?.rightContentRender !== false
+        rightContentRender !== false
         && (() => {
           return renderRightContent?.(
             () => {},
@@ -79,11 +65,13 @@ const BasicLayout = (props: any) => {
       <Exception
         matches={matchResult}
       >
-        {children}
-        {routesElement}
+        {childrenRender(<>
+          {children}
+          {routesElement}
+        </>, props)}
       </Exception>
     </ProLayout>
   )
 }
 
-export default BasicLayout
+export default Layout
