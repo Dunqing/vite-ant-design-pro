@@ -5,7 +5,6 @@
     "lib": [
       "esnext"
     ],
-    "types": [],
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -13,6 +12,6 @@
     "strictNullChecks": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true
+    "skipDefaultLibCheck": true,
   }
 }
