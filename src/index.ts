@@ -8,6 +8,7 @@ export default function antdLayout(): Plugin {
   const virtualModuleIdExt = `${virtualModuleId}.tsx`
 
   const baseDir = __dirname
+  let root: string
 
   return {
     name: 'vite-plugin-antd-layout',
@@ -29,6 +30,9 @@ export default function antdLayout(): Plugin {
         },
       },
     }),
+    configResolved(config) {
+      root = config.root
+    },
     resolveId(source, importer) {
       if (source === virtualModuleId)
         return virtualModuleIdExt
@@ -46,6 +50,12 @@ export default function antdLayout(): Plugin {
           }).toString(),
         }
       }
+    },
+    transform(code, id) {
+      if (id.endsWith(('vite-plugin-antd-layout/src/utils/traverseRoutes.tsx')))
+        return code.replace('$ROOT', root)
+
+      return code
     },
   }
 }

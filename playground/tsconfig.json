@@ -21,7 +21,12 @@
     "jsx": "react-jsx",
     "types": [
       "vite-plugin-antd-layout/client.d.ts"
-    ]
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
   "include": [
     "src"

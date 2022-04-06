@@ -1,12 +1,18 @@
+import { lazy } from 'react'
 import type { RoutesType } from '../types/routes'
+
+const Root = '$ROOT'
 
 export const traverseRoutes = (routes?: RoutesType): RoutesType => {
   return routes?.map((route) => {
     let element = route.element
+    const { component: Component } = route
 
-    if (element === undefined && route.component) {
-      const { component: Component } = route
-      element = <Component />
+    if (element === undefined && Component) {
+      if (typeof Component === 'string')
+        element = <></>
+      else
+        element = <Component />
     }
 
     return {
