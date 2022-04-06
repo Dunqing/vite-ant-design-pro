@@ -1,7 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import antdLayout from 'vite-plugin-antd-layout'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()]
+  plugins: [react(), antdLayout({
+    routes: [
+      {
+        name: '首页',
+        path: '/home',
+      },
+    ],
+  })],
 })

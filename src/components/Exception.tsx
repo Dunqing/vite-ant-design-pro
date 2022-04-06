@@ -1,35 +1,37 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Button, Result } from 'antd'
+import type { matchRoutes } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-function backToHome() {
-  history.push('/')
-}
-
-const Exception404 = () => (
-  <Result
+const Exception404 = () => {
+  const navigate = useNavigate()
+  return <Result
     status="404"
     title="404"
     subTitle="抱歉，你访问的页面不存在"
     extra={
-      <Button type="primary" onClick={backToHome}>
-        返回首页
+      <Button type="primary" onClick={() => {
+        navigate('/')
+      }}>
+      返回首页
       </Button>
     }
   />
-)
+}
 
-const Exception403 = () => (
-  <Result
+const Exception403 = () => {
+  const navigate = useNavigate()
+  return <Result
     status="403"
     title="403"
     subTitle="抱歉，你无权访问该页面"
     extra={
-      <Button type="primary" onClick={backToHome}>
+      <Button type="primary" onClick={() => navigate('/')}>
         返回首页
       </Button>
     }
   />
-)
+}
 
 export interface IRouteMenuConfig {
   /** 当前菜单名 */
@@ -53,24 +55,18 @@ export interface IRouteLayoutConfig {
   [key: string]: any
 }
 
-const WithExceptionOpChildren: React.FC<{
-  currentPathConfig?: IRouteLayoutConfig
+const Exception: React.FC<{
+  matches: ReturnType<typeof matchRoutes>
   children: any
-  noFound: React.ReactNode
-  unAccessible: React.ReactNode
-}> = (props) => {
-  const { children, currentPathConfig } = props
+}> = ({ matches, children }) => {
   // 404 现在应该很少会发生
-  if (!currentPathConfig)
-    return props.noFound || <Exception404 />
 
-  /**
-   * 这里是没有权限的意思
-   */
-  if (currentPathConfig.unAccessible || currentPathConfig.unaccessible)
-    return props.unAccessible || <Exception403 />
+  const isNotFound = useMemo(() => matches?.every(item => !item.route.element)
+    , [matches]) ?? true
+
+  if (isNotFound)
+    return <Exception404 />
 
   return children
 }
-
-export { Exception404, Exception403, WithExceptionOpChildren }
+export { Exception404, Exception403, Exception }
