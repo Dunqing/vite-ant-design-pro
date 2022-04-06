@@ -1,9 +1,9 @@
-import React, { Suspense, lazy } from 'react'
+import React, { lazy } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import Layout from '@virtual-antd-layout'
 import { BrowserRouter, Navigate } from 'react-router-dom'
 import { DashboardFilled, SmileOutlined } from '@ant-design/icons'
+import Layout from '@virtual-antd-layout'
 
 ReactDOM.render(
   <React.StrictMode>
