@@ -1,7 +1,8 @@
 import { readFileSync } from 'fs'
 import path from 'path'
-import type { Plugin } from 'vite'
 import { SourceMapGenerator } from 'source-map'
+import type { Plugin } from 'vite'
+import '../client'
 
 export default function antdLayout(): Plugin {
   const virtualModuleId = '@virtual-antd-layout'
