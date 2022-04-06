@@ -3,26 +3,9 @@ import ProLayout from '@ant-design/pro-layout'
 import React, { useMemo } from 'react'
 import { Link, matchRoutes, renderMatches, useLocation, useNavigate } from 'react-router-dom'
 import { Exception } from '../components/Exception'
-import type { RoutesType } from '../types/routes'
 import renderRightContent from '../utils/renderRightContent'
+import { traverseRoutes } from '../utils/traverseRoutes'
 import './index.less'
-
-const traverseRoutes = (routes?: RoutesType): RoutesType => {
-  return routes?.map((route) => {
-    let element = route.element
-
-    if (element === undefined && route.component) {
-      const { component: Component } = route
-      element = <Component />
-    }
-
-    return {
-      ...route,
-      element,
-      children: traverseRoutes(route.children),
-    }
-  }) as RoutesType
-}
 
 const BasicLayout = (props: any) => {
   const { logo, children, userConfig = {}, routes, ...restProps } = props
