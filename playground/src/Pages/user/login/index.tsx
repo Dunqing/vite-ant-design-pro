@@ -248,7 +248,7 @@ const Login: React.FC = () => {
                   const result = await getFakeCaptcha({
                     phone,
                   })
-                  if (result === false)
+                  if (result.data === false)
                     return
 
                   message.success('获取验证码成功！验证码为：1234')

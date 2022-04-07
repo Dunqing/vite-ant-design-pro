@@ -12,5 +12,16 @@ request.interceptors.request.use((config) => {
 })
 
 request.interceptors.response.use((response) => {
+
+  if (response.data) {
+    if (typeof response.data !== 'object') {
+      return response.data
+    }
+    if (response.data.status !== 'ok') {
+      return Promise.reject(response.data)
+    }
+    return response.data
+  }
+  
   return response
 })

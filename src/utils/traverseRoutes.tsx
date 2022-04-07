@@ -9,7 +9,8 @@ export const traverseRoutes = (routes?: RoutesType): RoutesType => {
     if (typeof component === 'string') {
       // remove ./ or ../
       const name = component.replace(/^\.\.?\//, '')
-      component = lazy(() => import(`$ROOT/src/pages/${name}.tsx`))
+      component = lazy(() => import(`$ROOT/src/pages/${name}.tsx`).catch(() =>   import(`$ROOT/src/pages/${name}/index.tsx`)
+      ))
     }
 
     if (redirect !== undefined) {

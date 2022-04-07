@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import { BrowserRouter, Navigate } from 'react-router-dom'
 import { DashboardFilled, SmileOutlined } from '@ant-design/icons'
 import Layout from '@virtual-antd-layout'
@@ -8,26 +7,22 @@ import { IntlProvider } from 'react-intl'
 
 
 const routes = [
-  // {
-  //   path: '/user',
-  //   layout: false,
-  //   routes: [
-  //     {
-  //       name: 'login',
-  //       path: '/user/login',
-  //       component: './user/Login',
-  //     },
-  //     {
-  //       component: './404',
-  //     },
-  //   ],
-  // },
+  {
+    path: '/user',
+    layout: false,
+    children: [
+      {
+        name: 'login',
+        path: 'login',
+        component: './user/Login',
+      },
+    ],
+  },
   {
     path: '/welcome',
     name: 'welcome',
     icon: 'smile',
     component: './Welcome',
-    // component: lazy(() => import(`./Pages/${Welcome}.tsx`))
   },
   // {
   //   path: '/admin',
