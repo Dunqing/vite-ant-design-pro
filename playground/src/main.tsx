@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter, Navigate } from 'react-router-dom'
 import { DashboardFilled, SmileOutlined } from '@ant-design/icons'
 import Layout from '@virtual-antd-layout'
-import { IntlProvider } from 'react-intl'
+import IntlProvider from './locales'
 
 
 const routes = [
@@ -61,7 +61,7 @@ const routes = [
 ReactDOM.render(
   <React.StrictMode>
     <div style={{ height: '100vh' }}>
-    <IntlProvider locale={'zh-CN'}>
+    <IntlProvider>
       <BrowserRouter>
         <Suspense fallback="aaaa">
 
