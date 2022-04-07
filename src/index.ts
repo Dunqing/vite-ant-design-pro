@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs'
-import path from 'path'
+import path, { dirname } from 'path'
 import { SourceMapGenerator } from 'source-map'
 import type { Plugin } from 'vite'
 
@@ -12,7 +12,14 @@ export default function antdLayout(): Plugin {
 
   return {
     name: 'vite-plugin-antd-layout',
+    enforce: 'pre',
     config: () => ({
+      build: {
+        dynamicImportVarsOptions: {
+          include: [path.join(baseDir, 'utils/traverseRoutes.tsx'), virtualModuleId, virtualModuleIdExt],
+          exclude: [],
+        },
+      },
       resolve: {
         alias: [
           {
@@ -31,14 +38,23 @@ export default function antdLayout(): Plugin {
       },
     }),
     configResolved(config) {
+      console.log(path.join(baseDir, 'utils/traverseRoutes.tsx'))
+
       root = config.root
     },
     resolveId(source, importer) {
+      // console.log("🚀 ~ file: index.ts ~ line 38 ~ resolveId ~ source", source, importer)
       if (source === virtualModuleId)
         return virtualModuleIdExt
 
-      if (importer === virtualModuleIdExt)
-        return path.resolve(baseDir, 'layout', source)
+      // if (source.endsWith("@ant-design/pro-layout")) {
+      //   return "@ant-design/pro-layout"
+      // }
+
+      if (importer === virtualModuleIdExt) {
+        if (/\.\.?\//.test(source))
+          return path.resolve(baseDir, 'layout', source)
+      }
     },
     load(id) {
       const filePath = path.join(baseDir, 'layout/Layout.tsx')
@@ -53,7 +69,8 @@ export default function antdLayout(): Plugin {
     },
     transform(code, id) {
       if (id.endsWith(('vite-plugin-antd-layout/src/utils/traverseRoutes.tsx')))
-        return code.replace('$ROOT', root)
+
+        return code.replace(/\$ROOT/g, path.relative(dirname(id), root))
 
       return code
     },

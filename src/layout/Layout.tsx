@@ -1,10 +1,11 @@
 import ProLayout from '@ant-design/pro-layout'
 import { Suspense, useMemo } from 'react'
-import { Link, matchRoutes, renderMatches, useLocation, useNavigate } from 'react-router-dom'
-import { Exception } from '../components/Exception'
+import { Link, matchRoutes, useLocation, useNavigate } from 'react-router-dom'
+import { Exception } from '../components/Exception.tsx'
 import type { LayoutProps } from '../types'
-import renderRightContent from '../utils/renderRightContent'
-import { traverseRoutes } from '../utils/traverseRoutes'
+import renderRightContent from '../utils/renderRightContent.tsx'
+import { traverseRoutes } from '../utils/traverseRoutes.tsx'
+import renderMatches from '../utils/renderMatches.tsx'
 import './index.less'
 
 const Layout = (props: LayoutProps) => {

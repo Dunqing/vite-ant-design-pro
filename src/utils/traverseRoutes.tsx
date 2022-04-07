@@ -1,23 +1,19 @@
 import { lazy } from 'react'
 import type { RoutesType } from '../types/routes'
 
-const Root = '$ROOT'
-
 export const traverseRoutes = (routes?: RoutesType): RoutesType => {
   return routes?.map((route) => {
-    let element = route.element
-    const { component: Component } = route
+    let { component } = route
 
-    if (element === undefined && Component) {
-      if (typeof Component === 'string')
-        element = <></>
-      else
-        element = <Component />
-    }
+    // const matches = import.meta.glob(`../../playground/src/pages/./Welcome.tsx`)
+    // console.log("🚀 ~ file: traverseRoutes.tsx ~ line 9 ~ returnroutes?.map ~ matches", matches)
+
+    if (typeof component === 'string')
+      component = lazy(() => import(`$ROOT/src/pages/${component}.tsx`))
 
     return {
       ...route,
-      element,
+      component,
       children: traverseRoutes(route.children),
     }
   }) as RoutesType
