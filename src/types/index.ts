@@ -5,12 +5,12 @@ import type { RoutesType } from './routes'
 export * from './routes'
 
 export interface LayoutProps extends BasicLayoutProps {
-  childrenRender: (children: React.ReactNode, props: LayoutProps) => React.ReactNode
+  childrenRender?: (children: React.ReactNode, props: LayoutProps) => React.ReactNode
   routes: RoutesType
   /**
    * Suspense's fallback
    */
-  fallback: React.ReactNode
+  fallback?: React.ReactNode
   /**
    * used by built-in rightContentRender
    */

@@ -12,9 +12,9 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       less: {
-        additionalData: '@root-entry-name: default;'
-      }
-    }
+        additionalData: '@root-entry-name: default;',
+      },
+    },
   },
   server: {
     https: true,
@@ -27,8 +27,8 @@ export default defineConfig({
         // 依赖 origin 的功能可能需要这个，比如 cookie
         changeOrigin: true,
 
-        },  
-    }
+      },
+    },
   },
   plugins: [react(), antdLayout()],
 })

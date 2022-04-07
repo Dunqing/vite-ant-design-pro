@@ -23,22 +23,12 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
-    },
-    "./client": {
-      "types": "./client.d.ts"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/index.d.ts"
-      ]
     }
   },
   "files": [
     "dist",
-    "*.ts"
+    "*.ts",
+    "client.d.ts"
   ],
   "sideEffects": false,
   "scripts": {

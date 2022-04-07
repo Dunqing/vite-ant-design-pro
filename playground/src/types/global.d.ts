@@ -6,7 +6,7 @@ declare module 'axios' {
  * @description 修改返回的类型为拦截器返回的值的类型
  */
   export interface AxiosCustomizeResponse<T> {
-    status: 'ok' |'error',
+    status: 'ok' |'error'
     msg: string
     data: T
   }

@@ -4,8 +4,8 @@ import { SourceMapGenerator } from 'source-map'
 import type { Plugin } from 'vite'
 
 export default function antdLayout(): Plugin {
-  const virtualModuleId = '@virtual-antd-layout'
-  const virtualModuleIdExt = `${virtualModuleId}.tsx`
+  const virtualModuleId = 'virtual:antd-layout'
+  const virtualModuleIdExt = '@virtual-antd-layout.tsx'
 
   const baseDir = __dirname
   let root: string
@@ -14,12 +14,6 @@ export default function antdLayout(): Plugin {
     name: 'vite-plugin-antd-layout',
     enforce: 'pre',
     config: () => ({
-      build: {
-        dynamicImportVarsOptions: {
-          // include: [path.join(baseDir, 'utils/traverseRoutes.tsx'), virtualModuleId, virtualModuleIdExt],
-          // exclude: [],
-        },
-      },
       resolve: {
         alias: [
           {
@@ -41,12 +35,20 @@ export default function antdLayout(): Plugin {
       root = config.root
     },
     resolveId(source, importer) {
-      if (source === virtualModuleId)
-        return virtualModuleIdExt
+      if (source === virtualModuleId) {
+        return {
+          external: false,
+          id: virtualModuleIdExt,
+        }
+      }
 
       if (importer === virtualModuleIdExt) {
-        if (/\.\.?\//.test(source))
-          return path.resolve(baseDir, 'layout', source)
+        if (/\.\.?\//.test(source)) {
+          return {
+            external: 'absolute',
+            id: path.resolve(baseDir, 'layout', source),
+          }
+        }
       }
     },
     load(id) {
