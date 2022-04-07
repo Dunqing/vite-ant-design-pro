@@ -5,11 +5,12 @@ export const traverseRoutes = (routes?: RoutesType): RoutesType => {
   return routes?.map((route) => {
     let { component } = route
 
-    // const matches = import.meta.glob(`../../playground/src/pages/./Welcome.tsx`)
-    // console.log("🚀 ~ file: traverseRoutes.tsx ~ line 9 ~ returnroutes?.map ~ matches", matches)
 
-    if (typeof component === 'string')
-      component = lazy(() => import(`$ROOT/src/pages/${component}.tsx`))
+    if (typeof component === 'string') {
+      // remove ./ or ../
+      const name = component.replace(/^\.\.?\//, '')
+      component = lazy(() => import(`$ROOT/src/pages/${name}.tsx`))
+    }
 
     return {
       ...route,

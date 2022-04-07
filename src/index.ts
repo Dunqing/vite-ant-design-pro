@@ -16,8 +16,8 @@ export default function antdLayout(): Plugin {
     config: () => ({
       build: {
         dynamicImportVarsOptions: {
-          include: [path.join(baseDir, 'utils/traverseRoutes.tsx'), virtualModuleId, virtualModuleIdExt],
-          exclude: [],
+          // include: [path.join(baseDir, 'utils/traverseRoutes.tsx'), virtualModuleId, virtualModuleIdExt],
+          // exclude: [],
         },
       },
       resolve: {
@@ -38,18 +38,11 @@ export default function antdLayout(): Plugin {
       },
     }),
     configResolved(config) {
-      console.log(path.join(baseDir, 'utils/traverseRoutes.tsx'))
-
       root = config.root
     },
     resolveId(source, importer) {
-      // console.log("🚀 ~ file: index.ts ~ line 38 ~ resolveId ~ source", source, importer)
       if (source === virtualModuleId)
         return virtualModuleIdExt
-
-      // if (source.endsWith("@ant-design/pro-layout")) {
-      //   return "@ant-design/pro-layout"
-      // }
 
       if (importer === virtualModuleIdExt) {
         if (/\.\.?\//.test(source))
@@ -57,8 +50,8 @@ export default function antdLayout(): Plugin {
       }
     },
     load(id) {
-      const filePath = path.join(baseDir, 'layout/Layout.tsx')
       if (id === virtualModuleIdExt) {
+        const filePath = path.join(baseDir, 'layout/Layout.tsx')
         return {
           code: readFileSync(filePath, 'utf-8'),
           map: new SourceMapGenerator({
@@ -66,13 +59,13 @@ export default function antdLayout(): Plugin {
           }).toString(),
         }
       }
-    },
-    transform(code, id) {
-      if (id.endsWith(('vite-plugin-antd-layout/src/utils/traverseRoutes.tsx')))
-
-        return code.replace(/\$ROOT/g, path.relative(dirname(id), root))
-
-      return code
+      const filePath = path.join(baseDir, 'utils/traverseRoutes.tsx')
+      if (id.includes(filePath)) {
+        return {
+          code: readFileSync(filePath).toString().replace(/\$ROOT/g, path.relative(dirname(id), root)),
+          map: new SourceMapGenerator({ file: filePath }).toString(),
+        }
+      }
     },
   }
 }

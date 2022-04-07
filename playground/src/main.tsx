@@ -4,6 +4,8 @@ import './index.css'
 import { BrowserRouter, Navigate } from 'react-router-dom'
 import { DashboardFilled, SmileOutlined } from '@ant-design/icons'
 import Layout from '@virtual-antd-layout'
+import { IntlProvider } from 'react-intl'
+
 
 const routes = [
   // {
@@ -25,6 +27,7 @@ const routes = [
     name: 'welcome',
     icon: 'smile',
     component: './Welcome',
+    // component: lazy(() => import(`./Pages/${Welcome}.tsx`))
   },
   // {
   //   path: '/admin',
@@ -59,9 +62,11 @@ const routes = [
   // },
 ]
 
+
 ReactDOM.render(
   <React.StrictMode>
     <div style={{ height: '100vh' }}>
+    <IntlProvider locale={'zh-CN'}>
       <BrowserRouter>
         <Suspense fallback="aaaa">
 
@@ -70,6 +75,7 @@ ReactDOM.render(
         <Layout routes={routes}>
         </Layout>
       </BrowserRouter>
+    </IntlProvider>
     </div>
   </React.StrictMode>,
   document.getElementById('root'),
