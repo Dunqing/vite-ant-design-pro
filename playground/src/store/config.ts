@@ -17,3 +17,5 @@ const { setLocale } = config.actions
 export {
   setLocale,
 }
+
+export default config.reducer
