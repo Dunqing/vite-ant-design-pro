@@ -24,7 +24,7 @@ export const routes = [
     icon: <CrownOutlined />,
     access: 'canAdmin',
     component: './Admin',
-    routes: [
+    children: [
       {
         path: '/admin/sub-page',
         name: 'sub-page',

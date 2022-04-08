@@ -9,7 +9,7 @@ import renderMatches from '../utils/renderMatches.tsx'
 import './index.less'
 
 const Layout = (props: LayoutProps) => {
-  const { fallback = 'loading...', rightContentProps, children, rightContentRender, childrenRender = children => children, routes, ...restProps } = props
+  const { fallback = 'loading...', rightContentProps, children, rightContentRender, childrenRender = c => c, routes, ...restProps } = props
 
   const realRoutes = useMemo(() => traverseRoutes(routes, true), [routes])
 

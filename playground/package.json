@@ -8,8 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/pro-descriptions": "^1.10.63",
     "@ant-design/pro-form": "^1.61.0",
     "@ant-design/pro-layout": "^6.34.8",
+    "@ant-design/pro-table": "^2.71.2",
     "@reduxjs/toolkit": "^1.8.1",
     "antd": "^4.19.5",
     "axios": "^0.26.1",
