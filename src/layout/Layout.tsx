@@ -1,3 +1,4 @@
+import type { BasicLayoutProps } from '@ant-design/pro-layout'
 import ProLayout from '@ant-design/pro-layout'
 import { Suspense, useMemo } from 'react'
 import { Link, matchRoutes, useLocation, useNavigate } from 'react-router-dom'
@@ -6,6 +7,7 @@ import type { LayoutProps } from '../types'
 import renderRightContent from '../utils/renderRightContent.tsx'
 import { traverseRoutes } from '../utils/traverseRoutes.tsx'
 import renderMatches from '../utils/renderMatches.tsx'
+import getLayoutRender from './getLayoutRender.ts'
 import './index.less'
 
 const Layout = (props: LayoutProps) => {
@@ -17,6 +19,21 @@ const Layout = (props: LayoutProps) => {
 
   const matchResult = matchRoutes(realRoutes, location)
   const routesElement = renderMatches(matchResult)
+
+  const layoutRestProps: BasicLayoutProps & {
+    rightContentRender?:
+    | false
+    | ((
+      props: BasicLayoutProps,
+      dom: React.ReactNode,
+      config: any,
+    ) => React.ReactNode)
+  } = {
+    ...restProps,
+    ...matchResult?.reduce((obj, match) => {
+      return { ...getLayoutRender(match.route), ...obj }
+    }, {}),
+  }
 
   const navigate = useNavigate()
 
@@ -49,9 +66,7 @@ const Layout = (props: LayoutProps) => {
       fixSiderbarcomponent
       fixedHeader
       itemRender={route => <Link to={route.path}>{route.breadcrumbName}</Link>}
-      {
-        ...restProps
-      }
+      {...layoutRestProps}
       rightContentRender={
         rightContentRender !== false
         && ((layoutProps) => {
