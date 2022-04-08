@@ -1,6 +1,7 @@
 import Layout from 'virtual:antd-layout'
 import { PageLoading, SettingDrawer } from '@ant-design/pro-layout'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useQueryClient } from 'react-query'
 import Footer from '@/components/Footer'
 import { routes } from '@/routes'
 import RightContent from '@/components/RightContent'
@@ -8,6 +9,7 @@ import { useUserInfoQuery } from '@/queries/auth'
 import { useLayoutQuery } from '@/queries/layout'
 
 export default function LayoutWrapper() {
+  const queryClient = useQueryClient()
   const { data: currentUser, isLoading } = useUserInfoQuery()
   const layout = useLayoutQuery()
   const location = useLocation()
@@ -35,19 +37,20 @@ export default function LayoutWrapper() {
       return (
         <>
           {children}
-          {!location.p?.includes('/login') && (
+          {!location.pathname?.includes('/login') && (
             <SettingDrawer
               disableUrlParams
               enableDarkTheme
-              settings={layout}
+              settings={layout as any}
               onSettingChange={(settings) => {
-
+                queryClient.setQueryData('@layout', settings)
               }}
             />
           )}
         </>
       )
     }}
+    {...layout as any}
   >
 
   </Layout>
