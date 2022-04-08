@@ -2,6 +2,7 @@ import Layout from 'virtual:antd-layout'
 import { PageLoading, SettingDrawer } from '@ant-design/pro-layout'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useQueryClient } from 'react-query'
+import { useIntl } from 'react-intl'
 import Footer from '@/components/Footer'
 import { routes } from '@/routes'
 import RightContent from '@/components/RightContent'
@@ -14,6 +15,7 @@ export default function LayoutWrapper() {
   const layout = useLayoutQuery()
   const location = useLocation()
   const navigate = useNavigate()
+  const intl = useIntl()
 
   return <Layout routes={routes} rightContentRender={() => <RightContent />}
     disableContentMargin={false}
@@ -28,6 +30,7 @@ export default function LayoutWrapper() {
       if (!currentUser && location.pathname !== '/user/login')
         navigate('/user/login')
     }}
+    formatMessage={intl.formatMessage}
     menuHeaderRender={undefined}
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,

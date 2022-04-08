@@ -22,7 +22,7 @@ const Layout = (props: LayoutProps) => {
 
   return (
     <ProLayout
-      title="Antd Layout"
+      title="Ant Design Pro"
       route={{ routes }}
       location={location}
       navTheme="dark"
