@@ -1,3 +1,4 @@
+import { CrownOutlined, SmileOutlined, TableOutlined } from '@ant-design/icons'
 
 export const routes = [
   {
@@ -14,13 +15,13 @@ export const routes = [
   {
     path: '/welcome',
     name: 'welcome',
-    icon: 'smile',
+    icon: <SmileOutlined />,
     component: './Welcome',
   },
   {
     path: '/admin',
     name: 'admin',
-    icon: 'crown',
+    icon: <CrownOutlined />,
     access: 'canAdmin',
     component: './Admin',
     routes: [
@@ -37,8 +38,8 @@ export const routes = [
   },
   {
     name: 'list.table-list',
-    icon: 'table',
     path: '/list',
+    icon: <TableOutlined />,
     component: './TableList',
   },
   {

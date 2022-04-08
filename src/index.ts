@@ -14,6 +14,11 @@ export default function antdLayout(): Plugin {
     name: 'vite-plugin-antd-layout',
     enforce: 'pre',
     config: () => ({
+      build: {
+        dynamicImportVarsOptions: {
+          exclude: [],
+        },
+      },
       resolve: {
         alias: [
           {
@@ -64,7 +69,8 @@ export default function antdLayout(): Plugin {
       const filePath = path.join(baseDir, 'utils/traverseRoutes.tsx')
       if (id.includes(filePath)) {
         return {
-          code: readFileSync(filePath).toString().replace(/\$ROOT/g, path.join(path.relative(dirname(id), root), 'src/pages')),
+          code: readFileSync(filePath).toString()
+            .replace(/\$ROOT/g, path.join(path.relative(dirname(id), root), 'src/pages')),
           map: new SourceMapGenerator({ file: filePath }).toString(),
         }
       }
