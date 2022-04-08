@@ -15,7 +15,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
-  const { data: currentUser, isLoading } = useUserInfoQuery({})
+  const { data: currentUser, isLoading } = useUserInfoQuery()
 
   const { mutate: logout } = useLogoutMutation()
 
