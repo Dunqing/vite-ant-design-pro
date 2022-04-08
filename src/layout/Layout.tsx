@@ -11,7 +11,7 @@ import './index.less'
 const Layout = (props: LayoutProps) => {
   const { fallback = 'loading...', rightContentProps, children, rightContentRender, childrenRender = children => children, routes, ...restProps } = props
 
-  const realRoutes = useMemo(() => traverseRoutes(routes), [routes])
+  const realRoutes = useMemo(() => traverseRoutes(routes, true), [routes])
 
   const location = useLocation()
 

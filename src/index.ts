@@ -64,7 +64,7 @@ export default function antdLayout(): Plugin {
       const filePath = path.join(baseDir, 'utils/traverseRoutes.tsx')
       if (id.includes(filePath)) {
         return {
-          code: readFileSync(filePath).toString().replace(/\$ROOT/g, path.relative(dirname(id), root)),
+          code: readFileSync(filePath).toString().replace(/\$ROOT/g, path.join(path.relative(dirname(id), root), 'src/pages')),
           map: new SourceMapGenerator({ file: filePath }).toString(),
         }
       }
