@@ -1,13 +1,13 @@
-import { readFileSync } from 'fs'
 import path, { dirname } from 'path'
-import { SourceMapGenerator } from 'source-map'
 import type { Plugin } from 'vite'
+import MagicString from 'magic-string'
 
 export default function antdLayout(): Plugin {
   const virtualModuleId = 'virtual:antd-layout'
   const virtualModuleIdExt = '@virtual-antd-layout.tsx'
 
   const baseDir = __dirname
+
   let root: string
 
   return {
@@ -58,22 +58,22 @@ export default function antdLayout(): Plugin {
     },
     load(id) {
       if (id === virtualModuleIdExt) {
-        const filePath = path.join(baseDir, 'layout/Layout.tsx')
-        return {
-          code: readFileSync(filePath, 'utf-8'),
-          map: new SourceMapGenerator({
-            file: filePath,
-          }).toString(),
-        }
+        const filePath = path.join(baseDir, 'layout/Layout')
+        const code = `export { default } from '${filePath}'`
+        return { code, map: new MagicString(code).generateMap() }
       }
-      const filePath = path.join(baseDir, 'utils/traverseRoutes.tsx')
+    },
+    transform(code, id) {
+      const filePath = path.join(baseDir, 'utils/traverseRoutes')
       if (id.includes(filePath)) {
+        const ms = new MagicString(code)
+        ms.replace(/\$ROOT/g, path.join(path.relative(dirname(id), root), 'src/pages'))
         return {
-          code: readFileSync(filePath).toString()
-            .replace(/\$ROOT/g, path.join(path.relative(dirname(id), root), 'src/pages')),
-          map: new SourceMapGenerator({ file: filePath }).toString(),
+          code: ms.toString(),
+          map: ms.generateMap(),
         }
       }
+      return code
     },
   }
 }

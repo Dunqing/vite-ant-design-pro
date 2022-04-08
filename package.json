@@ -4,7 +4,7 @@
   "packageManager": "pnpm@6.32.3",
   "description": "",
   "keywords": [],
-  "homepage": "https://github.com/antfu/vite-plugin-antd-layout#readme",
+  "homepage": "https://vite-ant-design-pro.vercel.app",
   "bugs": {
     "url": "https://github.com/antfu/vite-plugin-antd-layout/issues"
   },
@@ -32,7 +32,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "rimraf dist && unbuild",
+    "build": "rimraf dist && unbuild && pnpm run --filter ./playground build",
     "dev": "unbuild --stub",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
@@ -52,7 +52,6 @@
     "esno": "^0.14.1",
     "pnpm": "^6.32.3",
     "rimraf": "^3.0.2",
-    "source-map": "^0.7.3",
     "typescript": "^4.6.2",
     "unbuild": "^0.7.0",
     "vite": "^2.9.0",
@@ -62,6 +61,7 @@
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-layout": "^6.34.8",
     "antd": "^4.19.5",
+    "magic-string": "^0.26.1",
     "react": "^18.0.0",
     "react-router-dom": "^6.3.0"
   }
