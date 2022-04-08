@@ -5,16 +5,12 @@ import HeaderSearch from '../HeaderSearch'
 import Avatar from './AvatarDropdown'
 import styles from './index.module.less'
 import { SelectLang } from '@/locales'
+import { useLayoutQuery } from '@/queries/layout'
 
 export type SiderTheme = 'light' | 'dark'
 
 const GlobalHeaderRight: React.FC = () => {
-  // const { initialState } = useModel('@@initialState')
-
-  // if (!initialState || !initialState.settings)
-  //   return null
-
-  // const { navTheme, layout } = initialState.settings
+  const { navTheme, layout } = useLayoutQuery()
   let className = styles.right
 
   if ((navTheme === 'dark' && layout === 'top') || layout === 'mix')

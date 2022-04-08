@@ -1,21 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
 import IntlProvider from './locales'
 import LayoutWrapper from './layouts'
-import store from './store'
+import QueryClientProvider from './queries'
 
 ReactDOM.render(
   <React.StrictMode>
     <div style={{ height: '100vh' }}>
-      <Provider store={store}>
+      <QueryClientProvider>
         <IntlProvider>
           <BrowserRouter>
             <LayoutWrapper />
           </BrowserRouter>
         </IntlProvider>
-      </Provider>
+      </QueryClientProvider>
     </div>
   </React.StrictMode>,
   document.getElementById('root'),

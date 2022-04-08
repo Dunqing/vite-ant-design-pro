@@ -4,6 +4,7 @@ export const request = axios.create({
   headers: {
     'content-type': 'application/json;charset=UTF-8',
   },
+  baseURL: '/',
   timeout: 5000,
 })
 
@@ -12,16 +13,8 @@ request.interceptors.request.use((config) => {
 })
 
 request.interceptors.response.use((response) => {
-
-  if (response.data) {
-    if (typeof response.data !== 'object') {
-      return response.data
-    }
-    if (response.data.status !== 'ok') {
-      return Promise.reject(response.data)
-    }
+  if (response.data)
     return response.data
-  }
-  
+
   return response
 })

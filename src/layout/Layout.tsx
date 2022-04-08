@@ -16,8 +16,6 @@ const Layout = (props: LayoutProps) => {
   const location = useLocation()
 
   const matchResult = matchRoutes(realRoutes, location)
-  console.log("🚀 ~ file: Layout.tsx ~ line 19 ~ Layout ~ realRoutes", realRoutes)
-  console.log("🚀 ~ file: Layout.tsx ~ line 19 ~ Layout ~ matchResult", matchResult)
   const routesElement = renderMatches(matchResult)
 
   const navigate = useNavigate()
@@ -56,7 +54,9 @@ const Layout = (props: LayoutProps) => {
       }
       rightContentRender={
         rightContentRender !== false
-        && (() => {
+        && ((layoutProps) => {
+          if (rightContentRender)
+            return rightContentRender(layoutProps)
           return renderRightContent?.(rightContentProps)
         })
       }

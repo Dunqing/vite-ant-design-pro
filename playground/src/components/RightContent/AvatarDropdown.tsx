@@ -1,49 +1,52 @@
-import { stringify } from 'querystring'
 import React, { useCallback } from 'react'
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons'
 import { Avatar, Menu, Spin } from 'antd'
-import { history, useModel } from 'umi'
-import type { MenuInfo } from 'rc-menu/lib/interface'
+import { createSearchParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import HeaderDropdown from '../HeaderDropdown'
-import styles from './index.less'
-import { outLogin } from '@/services/ant-design-pro/api'
+import styles from './index.module.less'
+import { useLogoutMutation, useUserInfoQuery } from '@/queries/auth'
 
 export interface GlobalHeaderRightProps {
   menu?: boolean
 }
 
-/**
+const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+
+  const { data: currentUser, isLoading } = useUserInfoQuery({})
+
+  const { mutate: logout } = useLogoutMutation()
+
+  /**
  * 退出登录，并且将当前的 url 保存
  */
-const loginOut = async() => {
-  await outLogin()
-  const { query = {}, search, pathname } = history.location
-  const { redirect } = query
-  // Note: There may be security issues, please note
-  if (window.location.pathname !== '/user/login' && !redirect) {
-    history.replace({
-      pathname: '/user/login',
-      search: stringify({
-        redirect: pathname + search,
-      }),
-    })
+  const loginOut = async() => {
+    await logout()
+    const { search, pathname } = location
+    // Note: There may be security issues, please note
+    if (window.location.pathname !== '/user/login' && !searchParams.has('redirect')) {
+      navigate(`/user/login?${
+        createSearchParams({
+          redirect: pathname + search,
+        }).toString()
+      }`, {
+        replace: true,
+      })
+    }
   }
-}
-
-const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
-  const { initialState, setInitialState } = useModel('@@initialState')
 
   const onMenuClick = useCallback(
-    (event: MenuInfo) => {
+    (event: any) => {
       const { key } = event
       if (key === 'logout') {
-        setInitialState(s => ({ ...s, currentUser: undefined }))
         loginOut()
         return
       }
-      history.push(`/account/${key}`)
+      navigate(`/account/${key}`)
     },
-    [setInitialState],
+    [],
   )
 
   const loading = (
@@ -58,10 +61,8 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
     </span>
   )
 
-  if (!initialState)
+  if (isLoading)
     return loading
-
-  const { currentUser } = initialState
 
   if (!currentUser || !currentUser.name)
     return loading

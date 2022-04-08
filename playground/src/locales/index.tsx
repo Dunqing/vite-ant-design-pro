@@ -2,11 +2,12 @@ import type { PropsWithChildren } from 'react'
 import { useEffect, useState } from 'react'
 import { IntlProvider as Provider } from 'react-intl'
 import zhCN from './zh-CN'
+import { useLayoutQuery } from '@/queries/layout'
 
 export * from './components/SelectLang'
 
 export default function IntlProvider({ children }: PropsWithChildren<any>) {
-  const locale = 'zh-CN'
+  const { locale } = useLayoutQuery()
   const [message, setMessage] = useState(zhCN)
 
   useEffect(() => {

@@ -13,8 +13,9 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './index.module.less'
 import Footer from '@/components/Footer'
-import { login } from '@/services/ant-design-pro/api'
 import { getFakeCaptcha } from '@/services/ant-design-pro/login'
+import type { LoginParams, LoginResult } from '@/queries/auth'
+import { useLoginMutation } from '@/queries/auth'
 
 const LoginMessage: React.FC<{
   content: string
@@ -30,7 +31,7 @@ const LoginMessage: React.FC<{
 )
 
 const Login: React.FC = () => {
-  const [userLoginState, setUserLoginState] = useState<API.LoginResult>({})
+  const [userLoginState, setUserLoginState] = useState<LoginResult>({})
   const [type, setType] = useState<string>('account')
 
   const intl = useIntl()
@@ -38,13 +39,10 @@ const Login: React.FC = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const fetchUserInfo = async() => {
-    // const userInfo = await initialState?.fetchUserInfo?.()
-  }
+  const { mutateAsync: login } = useLoginMutation()
 
-  const handleSubmit = async(values: API.LoginParams) => {
+  const handleSubmit = async(values: LoginParams) => {
     try {
-      // 登录
       const msg = await login({ ...values, type })
       if (msg.status === 'ok') {
         const defaultLoginSuccessMessage = intl.formatMessage({
@@ -52,7 +50,6 @@ const Login: React.FC = () => {
           defaultMessage: '登录成功！',
         })
         message.success(defaultLoginSuccessMessage)
-        await fetchUserInfo()
         /** 此方法会跳转到 redirect 参数所在的位置 */
         if (!history) return
         const query = new URLSearchParams(location.search)
@@ -97,7 +94,7 @@ const Login: React.FC = () => {
             <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.icon} />,
           ]}
           onFinish={async(values) => {
-            await handleSubmit(values as API.LoginParams)
+            await handleSubmit(values as LoginParams)
           }}
         >
           <Tabs activeKey={type} onChange={setType}>

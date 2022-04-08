@@ -1,10 +1,11 @@
 import type { CSSProperties } from 'react'
-import React, { useState } from 'react'
-
+import React from 'react'
+import { useQueryClient } from 'react-query'
 import type { DropDownProps, MenuProps } from 'antd'
 import { Dropdown, Menu } from 'antd'
 import { defaultLangUConfigMap } from './constants'
 import { getAllLocales } from './utils'
+import { useLayoutQuery } from '@/queries/layout'
 
 export interface HeaderDropdownProps extends DropDownProps {
   overlayClassName?: string
@@ -40,7 +41,6 @@ interface SelectLangProps {
   postLocalesData?: (locales: LocalData[]) => LocalData[]
   onItemClick?: MenuProps['onClick']
   className?: string
-  reload?: boolean
   icon?: React.ReactNode
   style?: CSSProperties
 }
@@ -52,14 +52,19 @@ export const SelectLang: React.FC<SelectLangProps> = (props) => {
     onItemClick,
     icon,
     style,
-    reload,
     ...restProps
   } = props
-  const [selectedLang, setSelectedLang] = useState(() => 'zh-CN')
+
+  const { locale } = useLayoutQuery()
+
+  const queryClient = useQueryClient()
 
   const changeLang: MenuProps['onClick'] = ({ key }): void => {
-    setLocale(key, reload)
-    setSelectedLang(getLocale())
+    queryClient.setQueryData('@layout', () => {
+      return {
+        locale: key,
+      }
+    })
   }
 
   const defaultLangUConfig = getAllLocales().map(
@@ -81,7 +86,7 @@ export const SelectLang: React.FC<SelectLangProps> = (props) => {
   const menuItemStyle = { minWidth: '160px' }
   const menuItemIconStyle = { marginRight: '8px' }
   const langMenu = (
-    <Menu selectedKeys={[selectedLang]} onClick={handleClick}>
+    <Menu selectedKeys={[locale]} onClick={handleClick}>
       {allLangUIConfig.map((localeObj) => {
         return (
           <Menu.Item key={localeObj.lang || localeObj.key} style={menuItemStyle}>
@@ -109,7 +114,7 @@ export const SelectLang: React.FC<SelectLangProps> = (props) => {
   return (
     <HeaderDropdown overlay={langMenu} placement="bottomRight" {...restProps}>
       <span className={globalIconClassName} style={inlineStyle}>
-        <i className="anticon" title={defaultLangUConfigMap[selectedLang as 'zh-CN']?.title}>
+        <i className="anticon" title={defaultLangUConfigMap[locale as 'zh-CN']?.title}>
           { icon || (
             <svg
               viewBox="0 0 24 24"

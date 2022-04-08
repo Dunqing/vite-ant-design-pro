@@ -26,9 +26,6 @@
       ]
     },
     "types": [
-      "react-redux",
-      "redux-thunk",
-      "redux",
       "vite-plugin-antd-layout/client"
     ],
   },
