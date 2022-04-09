@@ -19,7 +19,7 @@ export const traverseRoutes = (routes?: RoutesType, clearCache = false): RoutesT
       // remove ./ or ../
       const name = component.replace(/^\.\.?\//, '')
 
-      if (clearCache === true) {
+      if (clearCache === true || !ComponentKeys.length) {
         ComponentMemo = import.meta.glob('$ROOT/**/*.tsx')
         ComponentKeys = Object.keys(ComponentMemo)
       }
