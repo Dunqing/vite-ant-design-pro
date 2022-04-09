@@ -5,7 +5,7 @@ import MagicString from 'magic-string'
 
 const name = 'ant-design-pro-layout'
 
-export default function antdLayout(): Plugin & { name: string } {
+export default function antdLayout(): Plugin {
   const virtualModuleId = 'virtual:antd-layout'
 
   let antDesignProLayoutId: string | undefined
