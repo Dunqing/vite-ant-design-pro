@@ -1,14 +1,16 @@
 import path, { dirname } from 'path'
-import type { Plugin } from 'vite'
+import type { Plugin, ResolvedConfig } from 'vite'
 import { normalizePath } from 'vite'
 import MagicString from 'magic-string'
+
+const name = 'ant-design-pro-layout'
 
 export default function antdLayout(): Plugin & { name: string } {
   const virtualModuleId = 'virtual:antd-layout'
 
-  const baseDir = __dirname
+  let antDesignProLayoutId: string | undefined
 
-  let root: string
+  let config: ResolvedConfig
 
   return {
     name: 'vite-plugin-antd-layout',
@@ -36,31 +38,31 @@ export default function antdLayout(): Plugin & { name: string } {
         },
       },
     }),
-    configResolved(config) {
-      root = config.root
+    configResolved(_config) {
+      config = _config
     },
     resolveId(source) {
       if (source === virtualModuleId)
         return virtualModuleId
     },
-    load(id) {
+    async load(id) {
       if (id === virtualModuleId) {
-        const filePath = normalizePath(path.join(baseDir, 'layout'))
-        const code = `export { default } from '${filePath}'`
+        antDesignProLayoutId = (await this.resolve(name))?.id
+        const code = `export { default } from "${name}"`
         return { code, map: new MagicString(code).generateMap() }
       }
     },
     transform(code, id) {
-      const filePath = normalizePath(path.join(baseDir, 'layout/utils/traverseRoutes'))
-      if (id.includes(filePath)) {
+      if (antDesignProLayoutId === id) {
         const ms = new MagicString(code)
-        ms.replace(/\$ROOT/g, normalizePath(path.join(path.relative(dirname(id), root), 'src/pages')))
+
+        ms.replace(/\$ROOT/g, normalizePath(path.join(path.relative(dirname(id), config.root), 'src/pages')))
+
         return {
           code: ms.toString(),
           map: ms.generateMap(),
         }
       }
-      return code
     },
   }
 }

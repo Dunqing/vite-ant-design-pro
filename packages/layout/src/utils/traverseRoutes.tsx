@@ -2,11 +2,14 @@ import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 import type { RoutesType } from '../types'
 
-let ComponentMemo: string[] | null = null
+let ComponentKeys: string[] = []
+let ComponentMemo: Record<string, any> = {}
 
 export const traverseRoutes = (routes?: RoutesType, clearCache = false): RoutesType => {
-  if (clearCache === true)
-    ComponentMemo = null
+  if (clearCache === true) {
+    ComponentMemo = {}
+    ComponentKeys = []
+  }
 
   return routes?.map((route) => {
     const { redirect } = route
@@ -16,17 +19,17 @@ export const traverseRoutes = (routes?: RoutesType, clearCache = false): RoutesT
       // remove ./ or ../
       const name = component.replace(/^\.\.?\//, '')
 
-      if (!ComponentMemo)
-        ComponentMemo = Object.keys(import.meta.glob('$ROOT/**/*.tsx'))
+      if (clearCache === true) {
+        ComponentMemo = import.meta.glob('$ROOT/**/*.tsx')
+        ComponentKeys = Object.keys(ComponentMemo)
+      }
 
-      const isIndexPage = ComponentMemo.find((value) => {
-        return value === `$ROOT/${name}/index.tsx`
+      const componentPath = ComponentKeys.find((value) => {
+        return [`$ROOT/${name}.tsx`, `$ROOT/${name}.jsx`, `$ROOT/${name}/index.tsx`, `$ROOT/${name}/index.jsx`].includes(value)
       })
 
-      if (isIndexPage)
-        component = lazy(() => import(`$ROOT/${name}/index.tsx`))
-      else
-        component = lazy(() => import(`$ROOT/${name}.tsx`))
+      if (componentPath && Reflect.has(ComponentMemo, componentPath))
+        component = lazy(ComponentMemo[componentPath])
     }
 
     if (redirect !== undefined)
