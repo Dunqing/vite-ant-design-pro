@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
-import type { RoutesType } from '../types/routes'
+import type { RoutesType } from '../types'
 
 let ComponentMemo: string[] | null = null
 

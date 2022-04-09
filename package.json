@@ -15,12 +15,12 @@
     "url": "git+https://github.com/antfu/vite-plugin-antd-layout.git"
   },
   "funding": "https://github.com/sponsors/antfu",
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
+      "require": "./dist/index.js",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
     }
@@ -32,8 +32,9 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "rimraf dist && unbuild && pnpm run --filter ./playground build",
-    "dev": "unbuild --stub",
+    "build": "tsup-node src/index.ts --dts && jiti ./scripts/copy.ts && pnpm run --filter ./playground build",
+    "preview": "pnpm run --filter ./playground preview",
+    "dev": "pnpm run build -- --watch",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp --commit --push --tag && pnpm publish",
@@ -50,19 +51,20 @@
     "bumpp": "^7.1.1",
     "eslint": "^8.11.0",
     "esno": "^0.14.1",
+    "jiti": "^1.13.0",
     "pnpm": "^6.32.3",
+    "recursive-copy": "^2.0.14",
     "rimraf": "^3.0.2",
+    "tsup": "^5.12.4",
     "typescript": "^4.6.2",
     "unbuild": "^0.7.0",
     "vite": "^2.9.0",
-    "vitest": "^0.7.10"
+    "vitest": "^0.7.10",
+    "magic-string": "^0.26.1"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-layout": "^6.34.8",
-    "antd": "^4.19.5",
-    "magic-string": "^0.26.1",
-    "react": "^18.0.0",
-    "react-router-dom": "^6.3.0"
+    "antd": "^4.19.5"
   }
 }

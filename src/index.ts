@@ -1,10 +1,10 @@
 import path, { dirname } from 'path'
 import type { Plugin } from 'vite'
+import { normalizePath } from 'vite'
 import MagicString from 'magic-string'
 
-export default function antdLayout(): Plugin {
+export default function antdLayout(): Plugin & { name: string } {
   const virtualModuleId = 'virtual:antd-layout'
-  const virtualModuleIdExt = '@virtual-antd-layout.tsx'
 
   const baseDir = __dirname
 
@@ -39,35 +39,22 @@ export default function antdLayout(): Plugin {
     configResolved(config) {
       root = config.root
     },
-    resolveId(source, importer) {
-      if (source === virtualModuleId) {
-        return {
-          external: false,
-          id: virtualModuleIdExt,
-        }
-      }
-
-      if (importer === virtualModuleIdExt) {
-        if (/\.\.?\//.test(source)) {
-          return {
-            external: 'absolute',
-            id: path.resolve(baseDir, 'layout', source),
-          }
-        }
-      }
+    resolveId(source) {
+      if (source === virtualModuleId)
+        return virtualModuleId
     },
     load(id) {
-      if (id === virtualModuleIdExt) {
-        const filePath = path.join(baseDir, 'layout/Layout')
+      if (id === virtualModuleId) {
+        const filePath = normalizePath(path.join(baseDir, 'layout'))
         const code = `export { default } from '${filePath}'`
         return { code, map: new MagicString(code).generateMap() }
       }
     },
     transform(code, id) {
-      const filePath = path.join(baseDir, 'utils/traverseRoutes')
+      const filePath = normalizePath(path.join(baseDir, 'layout/utils/traverseRoutes'))
       if (id.includes(filePath)) {
         const ms = new MagicString(code)
-        ms.replace(/\$ROOT/g, path.join(path.relative(dirname(id), root), 'src/pages'))
+        ms.replace(/\$ROOT/g, normalizePath(path.join(path.relative(dirname(id), root), 'src/pages')))
         return {
           code: ms.toString(),
           map: ms.generateMap(),

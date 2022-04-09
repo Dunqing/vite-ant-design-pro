@@ -2,7 +2,7 @@
 import { Avatar, Dropdown, Menu, Spin } from 'antd'
 import { LogoutOutlined } from '@ant-design/icons'
 import type { LayoutProps } from '../types'
-export default function renderRightContent(
+export function renderRightContent(
   options: LayoutProps['rightContentOptions'],
 ) {
   const { loading, logout, userInfo } = options || {}

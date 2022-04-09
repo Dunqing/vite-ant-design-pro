@@ -1,13 +1,6 @@
-export default function getLayoutRender(currentPathConfig: {
-  layout:
-  | {
-    hideMenu: boolean
-    hideNav: boolean
-    hideFooter: boolean
-  }
-  | false
-  hideFooter: boolean
-}) {
+import type { RoutesType } from '../types'
+
+export function getLayoutRender(currentPathConfig: RoutesType[number]) {
   const layoutRender: any = {}
 
   if (currentPathConfig?.hideFooter)
