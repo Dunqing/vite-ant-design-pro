@@ -58,13 +58,18 @@
     "typescript": "^4.6.2",
     "unbuild": "^0.7.0",
     "vite": "^2.9.0",
-    "vitest": "^0.7.10"
-  },
-  "dependencies": {
+    "vitest": "^0.7.10",
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-layout": "^6.34.8",
     "antd": "^4.19.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "peerDependencies": {
+    "react-router-dom": "^6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "@ant-design/icons": "^4.7.0",
+    "@ant-design/pro-layout": "^6.34.8"
   }
 }
