@@ -4,7 +4,7 @@ export const request = axios.create({
   headers: {
     'content-type': 'application/json;charset=UTF-8',
   },
-  baseURL: '/',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 5000,
 })
 
