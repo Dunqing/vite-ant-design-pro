@@ -1,3 +1,8 @@
+export interface FakeCaptcha {
+  code?: number
+  status?: string
+}
+
 export interface CurrentUser {
   name?: string
   avatar?: string

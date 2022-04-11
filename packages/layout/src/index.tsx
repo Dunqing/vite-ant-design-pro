@@ -7,6 +7,8 @@ import { Exception } from './components/Exception'
 import { getLayoutRender, renderMatches, renderRightContent, traverseRoutes } from './utils'
 import './index.less'
 
+export * from './types'
+
 const Layout = (props: LayoutProps) => {
   const { fallback = 'loading...', rightContentProps, children, rightContentRender, childrenRender = c => c, routes, ...restProps } = props
 

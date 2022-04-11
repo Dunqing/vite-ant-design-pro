@@ -13,9 +13,9 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './index.module.less'
 import Footer from '@/components/Footer'
-import { getFakeCaptcha } from '@/services/ant-design-pro/login'
-import type { LoginParams, LoginResult } from '@/queries/auth'
-import { useLoginMutation } from '@/queries/auth'
+import { getFakeCaptcha, useLoginMutation } from '@/services/ant-design-pro/login'
+import type { LoginParams, LoginResult } from '@/services/ant-design-pro/types'
+import { SelectLang } from '@/locales'
 
 const LoginMessage: React.FC<{
   content: string
@@ -73,7 +73,7 @@ const Login: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.lang} data-lang>
-        {/* {SelectLang && <SelectLang />} */}
+        <SelectLang />
       </div>
       <div className={styles.content}>
         <LoginForm

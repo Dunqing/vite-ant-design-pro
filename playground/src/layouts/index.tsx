@@ -6,8 +6,8 @@ import { useIntl } from 'react-intl'
 import Footer from '@/components/Footer'
 import { routes } from '@/routes'
 import RightContent from '@/components/RightContent'
-import { useUserInfoQuery } from '@/queries/auth'
 import { useLayoutQuery } from '@/queries/layout'
+import { useUserInfoQuery } from '@/services/ant-design-pro/login'
 
 export default function LayoutWrapper() {
   const queryClient = useQueryClient()

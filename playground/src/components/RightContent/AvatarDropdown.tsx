@@ -4,7 +4,7 @@ import { Avatar, Menu, Spin } from 'antd'
 import { createSearchParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import HeaderDropdown from '../HeaderDropdown'
 import styles from './index.module.less'
-import { useLogoutMutation, useUserInfoQuery } from '@/queries/auth'
+import { useLogoutMutation, useUserInfoQuery } from '@/services/ant-design-pro/login'
 
 export interface GlobalHeaderRightProps {
   menu?: boolean

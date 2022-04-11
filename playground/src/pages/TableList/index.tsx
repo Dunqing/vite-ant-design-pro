@@ -1,5 +1,5 @@
 import { PlusOutlined } from '@ant-design/icons'
-import { Button, Drawer, Input, message } from 'antd'
+import { Button, Drawer, Input } from 'antd'
 import React, { useRef, useState } from 'react'
 import { FooterToolbar, PageContainer } from '@ant-design/pro-layout'
 import type { ActionType, ProColumns } from '@ant-design/pro-table'
@@ -9,79 +9,9 @@ import type { ProDescriptionsItemProps } from '@ant-design/pro-descriptions'
 import ProDescriptions from '@ant-design/pro-descriptions'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { Outlet } from 'react-router-dom'
-import type { FormValueType } from './components/UpdateForm'
 import UpdateForm from './components/UpdateForm'
-import { addRule, removeRule, rule, updateRule } from '@/services/ant-design-pro/api'
-
-/**
- * @en-US Add node
- * @zh-CN 添加节点
- * @param fields
- */
-const handleAdd = async(fields: API.RuleListItem) => {
-  const hide = message.loading('正在添加')
-  try {
-    await addRule({ ...fields })
-    hide()
-    message.success('Added successfully')
-    return true
-  }
-  catch (error) {
-    hide()
-    message.error('Adding failed, please try again!')
-    return false
-  }
-}
-
-/**
- * @en-US Update node
- * @zh-CN 更新节点
- *
- * @param fields
- */
-const handleUpdate = async(fields: FormValueType) => {
-  const hide = message.loading('Configuring')
-  try {
-    await updateRule({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
-    })
-    hide()
-
-    message.success('Configuration is successful')
-    return true
-  }
-  catch (error) {
-    hide()
-    message.error('Configuration failed, please try again!')
-    return false
-  }
-}
-
-/**
- *  Delete node
- * @zh-CN 删除节点
- *
- * @param selectedRows
- */
-const handleRemove = async(selectedRows: API.RuleListItem[]) => {
-  const hide = message.loading('正在删除')
-  if (!selectedRows) return true
-  try {
-    await removeRule({
-      key: selectedRows.map(row => row.key),
-    })
-    hide()
-    message.success('Deleted successfully and will refresh soon')
-    return true
-  }
-  catch (error) {
-    hide()
-    message.error('Delete failed, please try again')
-    return false
-  }
-}
+import { rule, useRuleMutation } from './services'
+import type { PageParams, RuleListItem } from './types'
 
 const TableList: React.FC = () => {
   /**
@@ -98,8 +28,10 @@ const TableList: React.FC = () => {
   const [showDetail, setShowDetail] = useState<boolean>(false)
 
   const actionRef = useRef<ActionType>()
-  const [currentRow, setCurrentRow] = useState<API.RuleListItem>()
-  const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([])
+  const [currentRow, setCurrentRow] = useState<RuleListItem>()
+  const [selectedRowsState, setSelectedRows] = useState<RuleListItem[]>([])
+
+  const { updateRule, addRule, removeRule } = useRuleMutation()
 
   /**
    * @en-US International configuration
@@ -107,7 +39,7 @@ const TableList: React.FC = () => {
    * */
   const intl = useIntl()
 
-  const columns: ProColumns<API.RuleListItem>[] = [
+  const columns: ProColumns<RuleListItem>[] = [
     {
       title: (
         <FormattedMessage
@@ -243,7 +175,7 @@ const TableList: React.FC = () => {
 
   return (
     <PageContainer>
-      <ProTable<API.RuleListItem, API.PageParams>
+      <ProTable<RuleListItem, PageParams>
         headerTitle={intl.formatMessage({
           id: 'pages.searchTable.title',
           defaultMessage: 'Enquiry form',
@@ -293,7 +225,7 @@ const TableList: React.FC = () => {
         >
           <Button
             onClick={async() => {
-              await handleRemove(selectedRowsState)
+              await removeRule(selectedRowsState)
               setSelectedRows([])
               actionRef.current?.reloadAndRest?.()
             }}
@@ -320,7 +252,7 @@ const TableList: React.FC = () => {
         visible={createModalVisible}
         onVisibleChange={handleModalVisible}
         onFinish={async(value) => {
-          const success = await handleAdd(value as API.RuleListItem)
+          const success = await addRule(value as RuleListItem)
           if (success) {
             handleModalVisible(false)
             if (actionRef.current)
@@ -347,7 +279,7 @@ const TableList: React.FC = () => {
       </ModalForm>
       <UpdateForm
         onSubmit={async(value) => {
-          const success = await handleUpdate(value)
+          const success = await updateRule(value)
           if (success) {
             handleUpdateModalVisible(false)
             setCurrentRow(undefined)
@@ -374,7 +306,7 @@ const TableList: React.FC = () => {
         closable={false}
       >
         {currentRow?.name && (
-          <ProDescriptions<API.RuleListItem>
+          <ProDescriptions<RuleListItem>
             column={2}
             title={currentRow?.name}
             request={async() => ({
@@ -383,7 +315,7 @@ const TableList: React.FC = () => {
             params={{
               id: currentRow?.name,
             }}
-            columns={columns as ProDescriptionsItemProps<API.RuleListItem>[]}
+            columns={columns as ProDescriptionsItemProps<RuleListItem>[]}
           />
         )}
       </Drawer>
