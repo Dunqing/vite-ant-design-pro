@@ -27,6 +27,7 @@
   "files": [
     "dist",
     "*.ts",
+    "README.md",
     "client.d.ts"
   ],
   "sideEffects": false,
@@ -36,22 +37,14 @@
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm run build"
   },
-  "devDependencies": {
+  "dependencies": {
     "@babel/types": "^7.17.0",
     "@types/react": "^17.0.43",
     "vite": "^2.9.0",
     "magic-string": "^0.26.1",
-    "ant-design-pro-layout": "workspace:*",
-    "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-layout": "^6.34.8",
-    "antd": "^4.19.5"
+    "ant-design-pro-layout": "*"
   },
   "peerDependencies": {
-    "ant-design-pro-layout": "workspace:*",
-    "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-layout": "^6.34.8",
-    "antd": "^4.19.5",
-    "react": ">= 17",
-    "react-dom": ">= 17"
+    "ant-design-pro-layout": "*"
   }
 }
