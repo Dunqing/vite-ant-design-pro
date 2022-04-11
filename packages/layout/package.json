@@ -1,6 +1,6 @@
 {
   "name": "ant-design-pro-layout",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "packageManager": "pnpm@6.32.3",
   "description": "",
   "keywords": [],
@@ -55,6 +55,5 @@
     "react-dom": ">= 17",
     "react-router-dom": "^6"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

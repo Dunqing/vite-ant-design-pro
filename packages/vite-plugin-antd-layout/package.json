@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-antd-layout",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "packageManager": "pnpm@6.32.3",
   "description": "",
   "keywords": [],
@@ -33,7 +33,6 @@
   "scripts": {
     "build": "tsup-node",
     "dev": "pnpm run build -- --watch",
-    "release": "bumpp --commit --push --tag && pnpm publish",
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
