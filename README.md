@@ -1,15 +1,21 @@
-# vite-plugin-antd-layout
+<h1 align="center">Vite Ant Design Pro</h1>
 
-[![NPM version](https://img.shields.io/npm/v/vite-plugin-antd-layout?color=a1b858&label=)](https://www.npmjs.com/package/vite-plugin-antd-layout)
 
-## Sponsors
+[Preview](http://preview.pro.ant.design)
 
-<p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg">
-    <img src='https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg'/>
-  </a>
-</p>
+### Features
 
-## License
+- TypeScript: A language for application-scale JavaScript
+- Neat Design: Follow Ant Design specification
+- Common Templates: Typical templates for enterprise applications
+- International: Based on react-intl
+- Responsive: Designed for variable screen sizes
+- Theming: Customizable theme with simple config
+- Router: Based on react-router-dom@6
+- Best Practices: Solid workflow to make your code healthy
 
-[MIT](./LICENSE) License © 2021 [Anthony Fu](https://github.com/antfu)
+
+### Usage
+
+```bash
+```

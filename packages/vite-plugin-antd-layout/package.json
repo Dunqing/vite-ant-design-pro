@@ -6,15 +6,14 @@
   "keywords": [],
   "homepage": "https://vite-ant-design-pro.vercel.app",
   "bugs": {
-    "url": "https://github.com/antfu/vite-plugin-antd-layout/issues"
+    "url": "https://github.com/1247748612/vite-ant-design-pro/issues"
   },
   "license": "MIT",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "author": "dengqing <dengqing0821@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antfu/vite-plugin-antd-layout.git"
+    "url": "git+https://github.com/1247748612/vite-ant-design-pro.git"
   },
-  "funding": "https://github.com/sponsors/antfu",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

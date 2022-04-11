@@ -6,30 +6,14 @@
   "keywords": [],
   "homepage": "https://vite-ant-design-pro.vercel.app",
   "bugs": {
-    "url": "https://github.com/antfu/vite-plugin-antd-layout/issues"
+    "url": "https://github.com/1247748612/vite-ant-design-pro/issues"
   },
   "license": "MIT",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "author": "dengqing <dengqing0821@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antfu/vite-plugin-antd-layout.git"
+    "url": "git+https://github.com/1247748612/vite-ant-design-pro.git"
   },
-  "funding": "https://github.com/sponsors/antfu",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    }
-  },
-  "files": [
-    "dist",
-    "*.ts",
-    "client.d.ts"
-  ],
   "sideEffects": false,
   "scripts": {
     "dev": "pnpm run dev --parallel",
@@ -59,10 +43,5 @@
     "vite": "^2.9.0",
     "vitest": "^0.7.10",
     "magic-string": "^0.26.1"
-  },
-  "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-layout": "^6.34.8",
-    "antd": "^4.19.5"
   }
 }
