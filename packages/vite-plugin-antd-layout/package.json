@@ -33,9 +33,8 @@
   "scripts": {
     "build": "tsup-node",
     "dev": "pnpm run build -- --watch",
-    "start": "esno src/index.ts",
-    "test": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
     "@babel/types": "^7.17.0",

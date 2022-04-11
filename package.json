@@ -1,5 +1,6 @@
 {
   "name": "vite-ant-design-pro",
+  "private": true,
   "version": "0.0.0",
   "packageManager": "pnpm@6.32.3",
   "description": "",
@@ -21,7 +22,7 @@
     "build": "pnpm run build --filter '*'",
     "lint": "eslint .",
     "prepublishOnly": "pnpm run build",
-    "release": "bumpp packages/*/package.json --no-verify --commit --push --tag && pnpm publish",
+    "release": "bumpp packages/*/package.json --no-verify --commit --push --tag && pnpm publish --filter './packages'",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
