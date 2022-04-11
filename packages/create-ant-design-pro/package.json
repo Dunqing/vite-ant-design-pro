@@ -16,8 +16,8 @@
   },
   "sideEffects": false,
   "bin": {
-    "create-vite": "index.js",
-    "cva": "index.js"
+    "create-ant-design-pro": "index.js",
+    "cadp": "index.js"
   },
   "dependencies": {
     "kolorist": "^1.5.1",

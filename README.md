@@ -16,13 +16,22 @@
 
 ## Usage
 
+with NPM: 
+```bash
+pnpm create ant-design-pro@latest
+```
+
+with Yarn: 
+```bash
+yarn create ant-design-pro
+```
+
+with PNPM: 
 ```bash
 pnpm create ant-design-pro
-
-git init
-pnpm install
-pnpm run start
 ```
+
+Then follow the prompts!
 
 ## Differences with [ant-design-pro](https://pro.ant.design)
 
