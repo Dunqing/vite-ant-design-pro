@@ -1,9 +1,9 @@
 <h1 align="center">Vite Ant Design Pro</h1>
 
 
-[Preview](http://preview.pro.ant.design)
+## [Preview](http://preview.pro.ant.design)
 
-### Features
+## Features
 
 - TypeScript: A language for application-scale JavaScript
 - Neat Design: Follow Ant Design specification
@@ -14,8 +14,32 @@
 - Router: Based on react-router-dom@6
 - Best Practices: Solid workflow to make your code healthy
 
-
-### Usage
+## Usage
 
 ```bash
+pnpm create ant-design-pro
+
+git init
+pnpm install
+pnpm run start
 ```
+
+## Differences with [ant-design-pro](https://pro.ant.design)
+
+No `Umi` related dependencies, we using `Vite`
+
+## Alternative to umi plugin
+
+- plugin-layout: [vite-plugin-antd-layout](https://www.npmjs.com/package/vite-plugin-antd-layout)
+- plugin-access: Write one by hand
+- plugin-locale: react-intl
+- plugin-dva: @reduxjs/toolkit
+- plugin-model: Unnecessary
+- plugin-request: axios
+- plugin-sass: [Built-in vite](https://vitejs.dev/guide/features.html#css-pre-processors)
+
+
+### Thanks for the great project
+
+- [Vite]("https://github.com/vitejs/vite")
+- [Ant Design Pro]("https://github.com/ant-design/ant-design-pro")
