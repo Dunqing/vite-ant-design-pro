@@ -1,7 +1,7 @@
 <h1 align="center">Vite Ant Design Pro</h1>
 
 
-## [Preview](http://preview.pro.ant.design)
+## [Preview](http://vite-ant-design-pro.vercel.com)
 
 ## Features
 
