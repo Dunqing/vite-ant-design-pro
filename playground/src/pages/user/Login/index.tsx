@@ -12,7 +12,7 @@ import { LoginForm, ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-de
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './index.module.less'
-import Footer from '@/components/Footer'
+import Footer from '@/layouts/components/Footer'
 import { getFakeCaptcha, useLoginMutation } from '@/services/ant-design-pro/login'
 import type { LoginParams, LoginResult } from '@/services/ant-design-pro/types'
 import { SelectLang } from '@/locales'
