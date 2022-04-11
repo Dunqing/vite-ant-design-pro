@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
 import IntlProvider from './locales'
-import LayoutWrapper from './layouts'
+import LayoutWrapper from './layout'
 import QueryClientProvider from './queries'
 
 ReactDOM.render(
