@@ -16,9 +16,6 @@ export default defineConfig({
       },
     },
   },
-  build: {
-    minify: false,
-  },
   server: {
     https: true,
     proxy: {

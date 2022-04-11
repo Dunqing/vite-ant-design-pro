@@ -20,7 +20,7 @@ export const traverseRoutes = (routes?: RoutesType, clearCache = false): RoutesT
       const name = component.replace(/^\.\.?\//, '')
 
       if (clearCache === true || !ComponentKeys.length) {
-        ComponentMemo = import.meta.glob('$ROOT/**/*.tsx')
+        // FIXME: HACK dynamic import
         ComponentKeys = Object.keys(ComponentMemo)
       }
 

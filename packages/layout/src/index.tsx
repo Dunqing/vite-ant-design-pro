@@ -5,6 +5,7 @@ import { Link, matchRoutes, useLocation, useNavigate } from 'react-router-dom'
 import type { LayoutProps } from './types'
 import { Exception } from './components/Exception'
 import { getLayoutRender, renderMatches, renderRightContent, traverseRoutes } from './utils'
+import './index.less'
 
 const Layout = (props: LayoutProps) => {
   const { fallback = 'loading...', rightContentProps, children, rightContentRender, childrenRender = c => c, routes, ...restProps } = props

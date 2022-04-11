@@ -33,7 +33,7 @@
   "sideEffects": false,
   "scripts": {
     "dev": "pnpm run dev --parallel",
-    "build": "pnpm run build --filter *",
+    "build": "pnpm run build --filter '*'",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp --commit --push --tag && pnpm publish",
