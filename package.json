@@ -16,11 +16,12 @@
   },
   "sideEffects": false,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "pnpm run dev --parallel",
     "build": "pnpm run build --filter '*'",
     "lint": "eslint .",
-    "prepublishOnly": "nr build",
-    "release": "bumpp --commit --push --tag && pnpm publish",
+    "prepublishOnly": "pnpm run build",
+    "release": "bumpp packages/*/package.json --no-verify --commit --push --tag && pnpm publish",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
@@ -34,6 +35,7 @@
     "eslint": "^8.11.0",
     "esno": "^0.14.1",
     "jiti": "^1.13.0",
+    "magic-string": "^0.26.1",
     "pnpm": "^6.32.3",
     "recursive-copy": "^2.0.14",
     "rimraf": "^3.0.2",
@@ -41,7 +43,6 @@
     "typescript": "^4.6.2",
     "unbuild": "^0.7.0",
     "vite": "^2.9.0",
-    "vitest": "^0.7.10",
-    "magic-string": "^0.26.1"
+    "vitest": "^0.7.10"
   }
 }
