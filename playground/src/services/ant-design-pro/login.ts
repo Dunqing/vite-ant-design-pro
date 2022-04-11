@@ -33,8 +33,9 @@ export const useLoginMutation = () => {
       data,
     })
   }, {
-    onSuccess() {
+    onSuccess(data) {
       queryClient.fetchQuery(UserInfoQueryKey)
+      queryClient.setQueryData('login-data', () => data)
     },
   })
 }

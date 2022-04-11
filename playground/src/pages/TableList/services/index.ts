@@ -20,15 +20,16 @@ export async function rule(
       ...params,
     },
     ...(options || {}),
-  }).then(res => res.data)
+  })
 }
 
 export const useRuleMutation = () => {
   return {
-    updateRule: useMutation('/api/rule', async(options?: Record<string, any>) => {
+    updateRule: useMutation(async(options?: Record<string, any>) => {
       const hide = message.loading('Configuring')
       try {
         await request({
+          url: '/api/rule',
           method: 'PUT',
           ...options,
         })
@@ -42,10 +43,11 @@ export const useRuleMutation = () => {
         return false
       }
     }).mutateAsync,
-    addRule: useMutation('/api/rule', async(options?: Record<string, any>) => {
+    addRule: useMutation(async(options?: Record<string, any>) => {
       const hide = message.loading('正在添加')
       try {
         await request({
+          url: '/api/rule',
           method: 'POST',
           ...options,
         })
@@ -59,10 +61,11 @@ export const useRuleMutation = () => {
         return false
       }
     }).mutateAsync,
-    removeRule: useMutation('/api/rule', async(fields: RuleListItem[]) => {
+    removeRule: useMutation(async(fields: RuleListItem[]) => {
       const hide = message.loading('Configuring')
       try {
         await request({
+          url: '/api/rule',
           method: 'PUT',
           ...fields,
         })

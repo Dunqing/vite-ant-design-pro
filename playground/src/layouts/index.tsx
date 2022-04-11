@@ -3,16 +3,22 @@ import { PageLoading, SettingDrawer } from '@ant-design/pro-layout'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
+import { useLayout } from './hooks'
 import Footer from '@/components/Footer'
 import { routes } from '@/routes'
 import RightContent from '@/components/RightContent'
-import { useLayoutQuery } from '@/queries/layout'
 import { useUserInfoQuery } from '@/services/ant-design-pro/login'
+import type { LoginResult } from '@/services/ant-design-pro/types'
+
+export * from './hooks'
 
 export default function LayoutWrapper() {
   const queryClient = useQueryClient()
   const { data: currentUser, isLoading } = useUserInfoQuery()
-  const layout = useLayoutQuery()
+
+  const loginData = queryClient.getQueryData<LoginResult>('login-data')
+
+  const [layout, updateLayout] = useLayout()
   const location = useLocation()
   const navigate = useNavigate()
   const intl = useIntl()
@@ -27,8 +33,11 @@ export default function LayoutWrapper() {
 
     onPageChange={() => {
       // 如果没有登录，重定向到 login
-      if (!currentUser && location.pathname !== '/user/login')
-        navigate('/user/login')
+      if (loginData?.status !== 'ok' && location.pathname !== '/user/login') {
+        requestAnimationFrame(() => {
+          navigate('/user/login')
+        })
+      }
     }}
     formatMessage={intl.formatMessage}
     menuHeaderRender={undefined}
@@ -46,7 +55,12 @@ export default function LayoutWrapper() {
               enableDarkTheme
               settings={layout as any}
               onSettingChange={(settings) => {
-                queryClient.setQueryData('@layout', settings)
+                updateLayout((_value) => {
+                  return {
+                    ..._value,
+                    ...settings,
+                  } as any
+                })
               }}
             />
           )}

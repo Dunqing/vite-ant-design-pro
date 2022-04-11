@@ -5,11 +5,7 @@ declare module 'axios' {
   /**
  * @description 修改返回的类型为拦截器返回的值的类型
  */
-  export interface AxiosCustomizeResponse<T> {
-    status: 'ok' |'error'
-    msg: string
-    data: T
-  }
+  export type AxiosCustomizeResponse<T> = Record<string, any> & T
 
   export type AxiosCustomPromise<T = any> = Promise<AxiosCustomizeResponse<T>>
 

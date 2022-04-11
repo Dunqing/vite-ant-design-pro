@@ -5,12 +5,13 @@ import HeaderSearch from '../HeaderSearch'
 import Avatar from './AvatarDropdown'
 import styles from './index.module.less'
 import { SelectLang } from '@/locales'
-import { useLayoutQuery } from '@/queries/layout'
+import { useLayout } from '@/layouts'
 
 export type SiderTheme = 'light' | 'dark'
 
 const GlobalHeaderRight: React.FC = () => {
-  const { navTheme, layout } = useLayoutQuery()
+  const [{ navTheme, layout }] = useLayout()
+
   let className = styles.right
 
   if ((navTheme === 'dark' && layout === 'top') || layout === 'mix')

@@ -1,11 +1,10 @@
 import type { CSSProperties } from 'react'
 import React from 'react'
-import { useQueryClient } from 'react-query'
 import type { DropDownProps, MenuProps } from 'antd'
 import { Dropdown, Menu } from 'antd'
 import { defaultLangUConfigMap } from './constants'
 import { getAllLocales } from './utils'
-import { useLayoutQuery } from '@/queries/layout'
+import { useLayout } from '@/layouts'
 
 export interface HeaderDropdownProps extends DropDownProps {
   overlayClassName?: string
@@ -55,15 +54,14 @@ export const SelectLang: React.FC<SelectLangProps> = (props) => {
     ...restProps
   } = props
 
-  const { locale } = useLayoutQuery()
-
-  const queryClient = useQueryClient()
+  const [{ locale }, updateLayout] = useLayout()
 
   const changeLang: MenuProps['onClick'] = ({ key }): void => {
-    queryClient.setQueryData('@layout', () => {
+    updateLayout((_value) => {
       return {
+        ..._value,
         locale: key,
-      }
+      } as any
     })
   }
 
