@@ -1,17 +1,18 @@
 import 'axios'
 
 declare module 'axios' {
-
   /**
- * @description 修改返回的类型为拦截器返回的值的类型
- */
+   * @description 修改返回的类型为拦截器返回的值的类型
+   */
   export type AxiosCustomizeResponse<T> = Record<string, any> & T
 
   export type AxiosCustomPromise<T = any> = Promise<AxiosCustomizeResponse<T>>
 
   export type AxiosRequest<T = any> = (...args: any[]) => AxiosCustomPromise<T>
 
-  export type AxiosResponseType<T> = T extends () => AxiosCustomPromise<infer K> ? K : T
+  export type AxiosResponseType<T> = T extends () => AxiosCustomPromise<infer K>
+    ? K
+    : T
 
   export interface AxiosRequestConfig {
     /**
@@ -32,37 +33,39 @@ declare module 'axios' {
       response: AxiosInterceptorManager<AxiosResponse>
     }
     getUri(config?: AxiosRequestConfig): string
-    request<T = any, R = AxiosCustomizeResponse<T>>(config: AxiosRequestConfig): Promise<R>
+    request<T = any, R = AxiosCustomizeResponse<T>>(
+      config: AxiosRequestConfig
+    ): Promise<R>
     get<T = any, R = AxiosCustomizeResponse<T>>(
       url: string,
-      config?: AxiosRequestConfig,
+      config?: AxiosRequestConfig
     ): Promise<R>
     delete<T = any, R = AxiosCustomizeResponse<T>>(
       url: string,
-      config?: AxiosRequestConfig,
+      config?: AxiosRequestConfig
     ): Promise<R>
     head<T = any, R = AxiosCustomizeResponse<T>>(
       url: string,
-      config?: AxiosRequestConfig,
+      config?: AxiosRequestConfig
     ): Promise<R>
     options<T = any, R = AxiosCustomizeResponse<T>>(
       url: string,
-      config?: AxiosRequestConfig,
+      config?: AxiosRequestConfig
     ): Promise<R>
     post<T = any, R = AxiosCustomizeResponse<T>>(
       url: string,
       data?: any,
-      config?: AxiosRequestConfig,
+      config?: AxiosRequestConfig
     ): Promise<R>
     put<T = any, R = AxiosCustomizeResponse<T>>(
       url: string,
       data?: any,
-      config?: AxiosRequestConfig,
+      config?: AxiosRequestConfig
     ): Promise<R>
     patch<T = any, R = AxiosCustomizeResponse<T>>(
       url: string,
       data?: any,
-      config?: AxiosRequestConfig,
+      config?: AxiosRequestConfig
     ): Promise<R>
   }
 }

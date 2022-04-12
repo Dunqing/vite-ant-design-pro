@@ -8,7 +8,7 @@ export type SetState<T> = (
    * Will not update state when destroyed.
    * Developer should make sure this is safe to ignore.
    */
-  ignoreDestroy?: boolean,
+  ignoreDestroy?: boolean
 ) => void
 
 /**
@@ -17,7 +17,7 @@ export type SetState<T> = (
  * Developer should confirm it's safe to ignore themselves.
  */
 export default function useSafeState<T>(
-  defaultValue?: T | (() => T),
+  defaultValue?: T | (() => T)
 ): [T, SetState<T>] {
   const destroyRef = React.useRef(false)
   const [value, setValue] = React.useState<T>(defaultValue!)
@@ -31,8 +31,7 @@ export default function useSafeState<T>(
   }, [])
 
   function safeSetState(updater: Updater<T>, ignoreDestroy?: boolean) {
-    if (ignoreDestroy && destroyRef.current)
-      return
+    if (ignoreDestroy && destroyRef.current) return
 
     setValue(updater)
   }

@@ -44,7 +44,8 @@ export default {
   'app.settings.binding.alipay': 'Binding Alipay',
   'app.settings.binding.alipay-description': 'Currently unbound Alipay account',
   'app.settings.binding.dingding': 'Binding DingTalk',
-  'app.settings.binding.dingding-description': 'Currently unbound DingTalk account',
+  'app.settings.binding.dingding-description':
+    'Currently unbound DingTalk account',
   'app.settings.binding.bind': 'Bind',
   'app.settings.notification.password': 'Account Password',
   'app.settings.notification.password-description':
@@ -57,4 +58,4 @@ export default {
     'The to-do list will be notified in the form of a letter from the station',
   'app.settings.open': 'Open',
   'app.settings.close': 'Close',
-};
+}

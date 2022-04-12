@@ -8,10 +8,17 @@ export default defineConfig({
       entry: './src/index.tsx',
       formats: ['es', 'cjs'],
       name: 'AntdLayout',
-      fileName: format => `index.${format === 'cjs' ? 'js' : 'mjs'}`,
+      fileName: (format) => `index.${format === 'cjs' ? 'js' : 'mjs'}`,
     },
     rollupOptions: {
-      external: ['@ant-design/pro-layout', '@ant-design/icons', 'antd', 'react', 'react-dom', 'react-router-dom'],
+      external: [
+        '@ant-design/pro-layout',
+        '@ant-design/icons',
+        'antd',
+        'react',
+        'react-dom',
+        'react-router-dom',
+      ],
     },
   },
   resolve: {

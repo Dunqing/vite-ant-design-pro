@@ -1,21 +1,17 @@
-
 import { Avatar, Dropdown, Menu, Spin } from 'antd'
 import { LogoutOutlined } from '@ant-design/icons'
 import type { LayoutProps } from '../types'
+
 export function renderRightContent(
-  options: LayoutProps['rightContentOptions'],
+  options: LayoutProps['rightContentOptions']
 ) {
   const { loading, logout, userInfo } = options || {}
 
   const menu = (
     <Menu className="umi-plugin-layout-menu">
-      <Menu.Item
-        key="logout"
-        onClick={() => {}
-        }
-      >
+      <Menu.Item key="logout" onClick={() => {}}>
         <LogoutOutlined />
-          退出登录
+        退出登录
       </Menu.Item>
     </Menu>
   )
@@ -26,8 +22,8 @@ export function renderRightContent(
         size="small"
         className="umi-plugin-layout-avatar"
         src={
-          userInfo?.avatar
-            || 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
+          userInfo?.avatar ||
+          'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
         }
         alt="avatar"
       />
@@ -43,15 +39,13 @@ export function renderRightContent(
   }
   return (
     <div className="umi-plugin-layout-right anticon">
-      {logout
-        ? (
-          <Dropdown overlay={menu} overlayClassName="umi-plugin-layout-container">
-            {avatar}
-          </Dropdown>
-        )
-        : (
-          avatar
-        )}
+      {logout ? (
+        <Dropdown overlay={menu} overlayClassName="umi-plugin-layout-container">
+          {avatar}
+        </Dropdown>
+      ) : (
+        avatar
+      )}
     </div>
   )
 }

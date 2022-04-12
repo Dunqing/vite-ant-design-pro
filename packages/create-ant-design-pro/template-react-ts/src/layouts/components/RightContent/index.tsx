@@ -1,9 +1,9 @@
+import Avatar from './AvatarDropdown'
+import styles from './index.module.less'
+import HeaderSearch from '../HeaderSearch'
 import { Space } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import React from 'react'
-import HeaderSearch from '../HeaderSearch'
-import Avatar from './AvatarDropdown'
-import styles from './index.module.less'
 import { SelectLang } from '@/locales'
 import { useLayout } from '@/layouts'
 
@@ -24,7 +24,10 @@ const GlobalHeaderRight: React.FC = () => {
         placeholder="站内搜索"
         defaultValue="umi ui"
         options={[
-          { label: <a href="https://umijs.org/zh/guide/umi-ui.html">umi ui</a>, value: 'umi ui' },
+          {
+            label: <a href="https://umijs.org/zh/guide/umi-ui.html">umi ui</a>,
+            value: 'umi ui',
+          },
           {
             label: <a href="next.ant.design">Ant Design</a>,
             value: 'Ant Design',

@@ -1,5 +1,5 @@
-import * as React from 'react'
 import useState from './useState'
+import * as React from 'react'
 
 /**
  * Similar to `useState` but will use props value if provided.
@@ -12,12 +12,11 @@ export default function useMergedState<T, R = T>(
     value?: T
     onChange?: (value: T, prevValue: T) => void
     postState?: (value: T) => T
-  },
+  }
 ): [R, (value: T, ignoreDestroy?: boolean) => void] {
   const { defaultValue, value, onChange, postState } = option || {}
   const [innerValue, setInnerValue] = useState<T>(() => {
-    if (value !== undefined)
-      return value
+    if (value !== undefined) return value
 
     if (defaultValue !== undefined) {
       return typeof defaultValue === 'function'
@@ -30,8 +29,7 @@ export default function useMergedState<T, R = T>(
   })
 
   let mergedValue = value !== undefined ? value : innerValue
-  if (postState)
-    mergedValue = postState(mergedValue)
+  if (postState) mergedValue = postState(mergedValue)
 
   // setState
   const onChangeRef = React.useRef(onChange)
@@ -43,7 +41,7 @@ export default function useMergedState<T, R = T>(
       if (mergedValue !== newValue && onChangeRef.current)
         onChangeRef.current(newValue, mergedValue)
     },
-    [mergedValue, onChangeRef],
+    [mergedValue, onChangeRef]
   )
 
   // Effect of reset value to `undefined`

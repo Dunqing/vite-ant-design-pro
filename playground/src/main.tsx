@@ -1,10 +1,10 @@
+import IntlProvider from './locales'
+import LayoutWrapper from './layouts'
+import QueryClientProvider from './queries'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
-import IntlProvider from './locales'
-import LayoutWrapper from './layouts'
-import QueryClientProvider from './queries'
 import 'antd/dist/antd.variable.css'
 
 ReactDOM.render(
@@ -13,7 +13,7 @@ ReactDOM.render(
       <QueryClientProvider>
         <IntlProvider>
           <HashRouter>
-            <ConfigProvider >
+            <ConfigProvider>
               <LayoutWrapper />
             </ConfigProvider>
           </HashRouter>
@@ -21,5 +21,5 @@ ReactDOM.render(
       </QueryClientProvider>
     </div>
   </React.StrictMode>,
-  document.getElementById('root'),
+  document.getElementById('root')
 )

@@ -1,7 +1,7 @@
-import * as path from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import antdLayout from 'vite-plugin-antd-layout'
+import * as path from 'path'
 
 export default defineConfig({
   resolve: {
@@ -26,7 +26,6 @@ export default defineConfig({
         // 配置了这个可以从 http 代理到 https
         // 依赖 origin 的功能可能需要这个，比如 cookie
         changeOrigin: true,
-
       },
     },
   },

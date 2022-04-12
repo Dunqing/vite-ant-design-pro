@@ -2,7 +2,8 @@ export default {
   'pages.layouts.userLayout.title':
     'Ant Design adalah spesifikasi desain Web yang paling berpengaruh di Kabupaten Xihu',
   'pages.login.accountLogin.tab': 'Login dengan akun',
-  'pages.login.accountLogin.errorMessage': 'Nama pengguna dan kata sandi salah(admin/ant.design)',
+  'pages.login.accountLogin.errorMessage':
+    'Nama pengguna dan kata sandi salah(admin/ant.design)',
   'pages.login.username.placeholder': 'nama pengguna: admin atau user',
   'pages.login.username.required': 'Nama pengguna harus diisi!',
   'pages.login.password.placeholder': 'kata sandi: ant.design',
@@ -33,7 +34,8 @@ export default {
   'pages.searchTable.updateForm.ruleConfig': 'Konfigurasi aturan',
   'pages.searchTable.updateForm.basicConfig': 'Informasi dasar',
   'pages.searchTable.updateForm.ruleName.nameLabel': 'Nama aturan',
-  'pages.searchTable.updateForm.ruleName.nameRules': 'Harap masukkan nama aturan!',
+  'pages.searchTable.updateForm.ruleName.nameRules':
+    'Harap masukkan nama aturan!',
   'pages.searchTable.updateForm.ruleDesc.descLabel': 'Deskripsi aturan',
   'pages.searchTable.updateForm.ruleDesc.descPlaceholder':
     'Harap masukkan setidaknya lima karakter',
@@ -45,7 +47,8 @@ export default {
   'pages.searchTable.updateForm.ruleProps.typeLabel': 'Jenis aturan',
   'pages.searchTable.updateForm.schedulingPeriod.title': 'Periode penjadwalan',
   'pages.searchTable.updateForm.schedulingPeriod.timeLabel': 'Waktu mulai',
-  'pages.searchTable.updateForm.schedulingPeriod.timeRules': 'Pilih waktu mulai!',
+  'pages.searchTable.updateForm.schedulingPeriod.timeRules':
+    'Pilih waktu mulai!',
   'pages.searchTable.titleDesc': 'deskripsi',
   'pages.searchTable.ruleName': 'Nama aturan wajib diisi',
   'pages.searchTable.titleCallNo': 'Jumlah panggilan',
@@ -67,4 +70,4 @@ export default {
   'pages.searchTable.tenThousand': '0000',
   'pages.searchTable.batchDeletion': 'Penghapusan batch',
   'pages.searchTable.batchApproval': 'Persetujuan batch',
-};
+}

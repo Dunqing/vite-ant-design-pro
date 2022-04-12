@@ -29,4 +29,4 @@ export default {
     'موفقیت در کپی کردن ， لطفا defaultSettings را در src / models / setting.js جایگزین کنید',
   'app.setting.production.hint':
     'صفحه تنظیم فقط در محیط توسعه نمایش داده می شود ، لطفاً دستی تغییر دهید',
-};
+}

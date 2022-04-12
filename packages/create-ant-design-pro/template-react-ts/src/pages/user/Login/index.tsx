@@ -1,3 +1,4 @@
+import styles from './index.module.less'
 import {
   AlipayCircleOutlined,
   LockOutlined,
@@ -8,13 +9,20 @@ import {
 } from '@ant-design/icons'
 import { Alert, Tabs, message } from 'antd'
 import React, { useState } from 'react'
-import { LoginForm, ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form'
+import {
+  LoginForm,
+  ProFormCaptcha,
+  ProFormCheckbox,
+  ProFormText,
+} from '@ant-design/pro-form'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useLocation, useNavigate } from 'react-router-dom'
-import styles from './index.module.less'
-import Footer from '@/layouts/components/Footer'
-import { getFakeCaptcha, useLoginMutation } from '@/services/ant-design-pro/login'
 import type { LoginParams, LoginResult } from '@/services/ant-design-pro/types'
+import Footer from '@/layouts/components/Footer'
+import {
+  getFakeCaptcha,
+  useLoginMutation,
+} from '@/services/ant-design-pro/login'
 import { SelectLang } from '@/locales'
 
 const LoginMessage: React.FC<{
@@ -41,7 +49,7 @@ const Login: React.FC = () => {
 
   const { mutateAsync: login } = useLoginMutation()
 
-  const handleSubmit = async(values: LoginParams) => {
+  const handleSubmit = async (values: LoginParams) => {
     try {
       const msg = await login({ ...values, type })
       if (msg.status === 'ok') {
@@ -59,8 +67,7 @@ const Login: React.FC = () => {
       }
       // 如果失败去设置用户错误信息
       setUserLoginState(msg)
-    }
-    catch (error) {
+    } catch (error) {
       const defaultLoginFailureMessage = intl.formatMessage({
         id: 'pages.login.failure',
         defaultMessage: '登录失败，请重试！',
@@ -79,7 +86,9 @@ const Login: React.FC = () => {
         <LoginForm
           logo={<img alt="logo" src="/logo.svg" />}
           title="Ant Design"
-          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
+          subTitle={intl.formatMessage({
+            id: 'pages.layouts.userLayout.title',
+          })}
           initialValues={{
             autoLogin: true,
           }}
@@ -89,11 +98,20 @@ const Login: React.FC = () => {
               id="pages.login.loginWith"
               defaultMessage="其他登录方式"
             />,
-            <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.icon} />,
-            <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.icon} />,
-            <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.icon} />,
+            <AlipayCircleOutlined
+              key="AlipayCircleOutlined"
+              className={styles.icon}
+            />,
+            <TaobaoCircleOutlined
+              key="TaobaoCircleOutlined"
+              className={styles.icon}
+            />,
+            <WeiboCircleOutlined
+              key="WeiboCircleOutlined"
+              className={styles.icon}
+            />,
           ]}
-          onFinish={async(values) => {
+          onFinish={async (values) => {
             await handleSubmit(values as LoginParams)
           }}
         >
@@ -171,7 +189,9 @@ const Login: React.FC = () => {
             </>
           )}
 
-          {status === 'error' && loginType === 'mobile' && <LoginMessage content="验证码错误" />}
+          {status === 'error' && loginType === 'mobile' && (
+            <LoginMessage content="验证码错误" />
+          )}
           {type === 'mobile' && (
             <>
               <ProFormText
@@ -241,12 +261,11 @@ const Login: React.FC = () => {
                     ),
                   },
                 ]}
-                onGetCaptcha={async(phone) => {
+                onGetCaptcha={async (phone) => {
                   const result = await getFakeCaptcha({
                     phone,
                   })
-                  if (result.data === false)
-                    return
+                  if (result.data === false) return
 
                   message.success('获取验证码成功！验证码为：1234')
                 }}
@@ -259,14 +278,20 @@ const Login: React.FC = () => {
             }}
           >
             <ProFormCheckbox noStyle name="autoLogin">
-              <FormattedMessage id="pages.login.rememberMe" defaultMessage="自动登录" />
+              <FormattedMessage
+                id="pages.login.rememberMe"
+                defaultMessage="自动登录"
+              />
             </ProFormCheckbox>
             <a
               style={{
                 float: 'right',
               }}
             >
-              <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
+              <FormattedMessage
+                id="pages.login.forgotPassword"
+                defaultMessage="忘记密码"
+              />
             </a>
           </div>
         </LoginForm>

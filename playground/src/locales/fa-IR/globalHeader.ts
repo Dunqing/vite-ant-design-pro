@@ -5,7 +5,8 @@ export default {
   'component.globalHeader.search.example3': 'مثال 3 را جستجو کنید',
   'component.globalHeader.help': 'کمک',
   'component.globalHeader.notification': 'اعلان',
-  'component.globalHeader.notification.empty': 'شما همه اعلان ها را مشاهده کرده اید.',
+  'component.globalHeader.notification.empty':
+    'شما همه اعلان ها را مشاهده کرده اید.',
   'component.globalHeader.message': 'پیام',
   'component.globalHeader.message.empty': 'شما همه پیام ها را مشاهده کرده اید.',
   'component.globalHeader.event': 'رویداد',
@@ -14,4 +15,4 @@ export default {
   'component.noticeIcon.cleared': 'پاک شد',
   'component.noticeIcon.empty': 'بدون اعلان',
   'component.noticeIcon.view-more': 'نمایش بیشتر',
-};
+}

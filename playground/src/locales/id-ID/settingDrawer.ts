@@ -21,7 +21,8 @@ export default {
   'app.setting.fixedsidebar': 'Sidebar Tetap',
   'app.setting.fixedsidebar.hint': 'Berjalan pada Susunan Menu Samping',
   'app.setting.hideheader': 'Sembunyikan Header ketika gulir ke bawah',
-  'app.setting.hideheader.hint': 'Bekerja ketika Header tersembunyi dimunculkan',
+  'app.setting.hideheader.hint':
+    'Bekerja ketika Header tersembunyi dimunculkan',
   'app.setting.othersettings': 'Pengaturan Lainnya',
   'app.setting.weakmode': 'Mode Lemah',
   'app.setting.copy': 'Salin Pengaturan',
@@ -29,4 +30,4 @@ export default {
     'Berhasil disalin，tolong ubah defaultSettings pada src/models/setting.js',
   'app.setting.production.hint':
     'Panel pengaturan hanya muncul pada lingkungan pengembangan, silahkan modifikasi secara menual',
-};
+}

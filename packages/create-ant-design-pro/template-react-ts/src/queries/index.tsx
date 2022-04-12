@@ -9,12 +9,14 @@ const queryClient = new QueryClient({
         return response.data
       },
       queryFn: ({ queryKey }) => {
-        return request(queryKey[0] as any)
+        return request(queryKey[0])
       },
     },
   },
 })
 
-export default function QueryClientProvider({ children }: React.PropsWithChildren<Record<string, any>>) {
-  return <Provider client={queryClient} >{children}</Provider>
+export default function QueryClientProvider({
+  children,
+}: React.PropsWithChildren<Record<string, any>>) {
+  return <Provider client={queryClient}>{children}</Provider>
 }

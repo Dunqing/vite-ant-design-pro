@@ -1,11 +1,11 @@
+import styles from './index.module.less'
 import { SearchOutlined } from '@ant-design/icons'
-import type { InputRef } from 'antd'
 import { AutoComplete, Input } from 'antd'
-import type { AutoCompleteProps } from 'antd/es/auto-complete'
 import React, { useRef } from 'react'
 
 import classNames from 'classnames'
-import styles from './index.module.less'
+import type { AutoCompleteProps } from 'antd/es/auto-complete'
+import type { InputRef } from 'antd'
 import useMergedState from '@/hooks/useMergedState'
 
 export interface HeaderSearchProps {
@@ -51,13 +51,11 @@ const HeaderSearch: React.FC<HeaderSearchProps> = (props) => {
       className={classNames(className, styles.headerSearch)}
       onClick={() => {
         setSearchMode(true)
-        if (searchMode && inputRef.current)
-          inputRef.current.focus()
+        if (searchMode && inputRef.current) inputRef.current.focus()
       }}
       onTransitionEnd={({ propertyName }) => {
         if (propertyName === 'width' && !searchMode) {
-          if (onVisibleChange)
-            onVisibleChange(searchMode)
+          if (onVisibleChange) onVisibleChange(searchMode)
         }
       }}
     >
@@ -72,7 +70,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = (props) => {
         className={inputClass}
         value={value}
         options={restProps.options}
-        onChange={completeValue => setValue(completeValue)}
+        onChange={(completeValue) => setValue(completeValue)}
       >
         <Input
           size="small"
@@ -82,8 +80,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = (props) => {
           placeholder={placeholder}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              if (restProps.onSearch)
-                restProps.onSearch(value)
+              if (restProps.onSearch) restProps.onSearch(value)
             }
           }}
           onBlur={() => {

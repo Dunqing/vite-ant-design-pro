@@ -2,6 +2,7 @@ import { ConfigProvider } from 'antd'
 import { useEffect } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 import { useLocalStorage } from 'react-use'
+
 export const LAYOUT_STORAGE_KEY = 'VITE_ANT_DESIGN_PRO_LAYOUT'
 
 const initialState = {
@@ -32,7 +33,7 @@ export const useLayout = () => {
   useEffect(() => {
     ConfigProvider.config({
       theme: {
-        primaryColor: local!.primaryColor,
+        primaryColor: local.primaryColor,
       },
     })
     queryClient.setQueryData([LAYOUT_STORAGE_KEY], () => {
@@ -41,7 +42,7 @@ export const useLayout = () => {
   }, [local, queryClient])
 
   const { data } = useQuery([LAYOUT_STORAGE_KEY], {
-    select: data => data,
+    select: (data) => data,
     initialData: () => local,
     enabled: false,
   })

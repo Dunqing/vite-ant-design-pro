@@ -2,7 +2,8 @@ export default {
   'pages.layouts.userLayout.title':
     'Ant Design é a especificação de web design mais influente no distrito de Xihu',
   'pages.login.accountLogin.tab': 'Login da conta',
-  'pages.login.accountLogin.errorMessage': 'usuário/senha incorreto(admin/ant.design)',
+  'pages.login.accountLogin.errorMessage':
+    'usuário/senha incorreto(admin/ant.design)',
   'pages.login.username.placeholder': 'Usuário: admin or user',
   'pages.login.username.required': 'Por favor insira seu usuário!',
   'pages.login.password.placeholder': 'Senha: ant.design',
@@ -13,7 +14,8 @@ export default {
   'pages.login.phoneNumber.required': 'Por favor entre com seu telefone!',
   'pages.login.phoneNumber.invalid': 'Telefone é inválido!',
   'pages.login.captcha.placeholder': 'Código de Verificação',
-  'pages.login.captcha.required': 'Por favor entre com o código de verificação!',
+  'pages.login.captcha.required':
+    'Por favor entre com o código de verificação!',
   'pages.login.phoneLogin.getVerificationCode': 'Obter Código',
   'pages.getCaptchaSecondText': 'seg(s)',
   'pages.login.rememberMe': 'Lembre-me',
@@ -24,7 +26,8 @@ export default {
   'pages.welcome.advancedComponent': 'Componente Avançado',
   'pages.welcome.link': 'Bem-vindo',
   'pages.welcome.advancedLayout': 'Layout Avançado',
-  'pages.welcome.alertMessage': 'Componentes pesados mais rápidos e mais fortes foram lançados.',
+  'pages.welcome.alertMessage':
+    'Componentes pesados mais rápidos e mais fortes foram lançados.',
   'pages.admin.subPage.title': 'Esta página só pode ser vista pelo Admin',
   'pages.admin.subPage.alertMessage':
     'O Umi ui foi lançado, bem-vindo ao usar o npm run ui para iniciar a experiência.',
@@ -32,7 +35,8 @@ export default {
   'pages.searchTable.updateForm.ruleConfig': 'Configuração de Regra',
   'pages.searchTable.updateForm.basicConfig': 'Informação básica',
   'pages.searchTable.updateForm.ruleName.nameLabel': 'Nome da Regra',
-  'pages.searchTable.updateForm.ruleName.nameRules': 'Por favor entre com o nome da regra!',
+  'pages.searchTable.updateForm.ruleName.nameRules':
+    'Por favor entre com o nome da regra!',
   'pages.searchTable.updateForm.ruleDesc.descLabel': 'Descrição da Regra',
   'pages.searchTable.updateForm.ruleDesc.descPlaceholder':
     'Por favor insira ao menos cinco caracteres',
@@ -42,7 +46,8 @@ export default {
   'pages.searchTable.updateForm.object': 'Objeto de Monitoramento',
   'pages.searchTable.updateForm.ruleProps.templateLabel': 'Modelo de Regra',
   'pages.searchTable.updateForm.ruleProps.typeLabel': 'Tipo de Regra',
-  'pages.searchTable.updateForm.schedulingPeriod.title': 'Definir Período de Agendamento',
+  'pages.searchTable.updateForm.schedulingPeriod.title':
+    'Definir Período de Agendamento',
   'pages.searchTable.updateForm.schedulingPeriod.timeLabel': 'Hora de Início',
   'pages.searchTable.updateForm.schedulingPeriod.timeRules':
     'Por favor selecione um horáriod e início!',
@@ -67,4 +72,4 @@ export default {
   'pages.searchTable.tenThousand': '0000',
   'pages.searchTable.batchDeletion': 'deleção em lote',
   'pages.searchTable.batchApproval': 'aprovação em lote',
-};
+}

@@ -5,7 +5,10 @@ import type { RoutesType } from '../types'
 let ComponentKeys: string[] = []
 let ComponentMemo: Record<string, any> = {}
 
-export const traverseRoutes = (routes?: RoutesType, clearCache = false): RoutesType => {
+export const traverseRoutes = (
+  routes?: RoutesType,
+  clearCache = false
+): RoutesType => {
   if (clearCache === true) {
     ComponentMemo = {}
     ComponentKeys = []
@@ -25,7 +28,12 @@ export const traverseRoutes = (routes?: RoutesType, clearCache = false): RoutesT
       }
 
       const componentPath = ComponentKeys.find((value) => {
-        return [`$ROOT/${name}.tsx`, `$ROOT/${name}.jsx`, `$ROOT/${name}/index.tsx`, `$ROOT/${name}/index.jsx`].includes(value)
+        return [
+          `$ROOT/${name}.tsx`,
+          `$ROOT/${name}.jsx`,
+          `$ROOT/${name}/index.tsx`,
+          `$ROOT/${name}/index.jsx`,
+        ].includes(value)
       })
 
       if (componentPath && Reflect.has(ComponentMemo, componentPath))

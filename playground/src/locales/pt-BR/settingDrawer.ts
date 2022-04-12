@@ -21,7 +21,8 @@ export default {
   'app.setting.fixedsidebar': 'Barra lateral fixa',
   'app.setting.fixedsidebar.hint': 'Funciona no layout do menu lateral',
   'app.setting.hideheader': 'Esconder o cabeçalho quando rolar',
-  'app.setting.hideheader.hint': 'Funciona quando o esconder cabeçalho está abilitado',
+  'app.setting.hideheader.hint':
+    'Funciona quando o esconder cabeçalho está abilitado',
   'app.setting.othersettings': 'Outras configurações',
   'app.setting.weakmode': 'Weak Mode',
   'app.setting.copy': 'Copiar Configuração',
@@ -29,4 +30,4 @@ export default {
     'copiado com sucesso，por favor trocar o defaultSettings em src/models/setting.js',
   'app.setting.production.hint':
     'O painel de configuração apenas é exibido no ambiente de desenvolvimento, por favor modifique manualmente o',
-};
+}

@@ -13,8 +13,7 @@ request.interceptors.request.use((config) => {
 })
 
 request.interceptors.response.use((response) => {
-  if (response.data)
-    return response.data
+  if (response.data) return response.data
 
   return response
 })

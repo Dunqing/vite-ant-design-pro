@@ -12,7 +12,7 @@ export async function rule(
     /** 页面的容量 */
     pageSize?: number
   },
-  options?: Record<string, any>,
+  options?: Record<string, any>
 ) {
   return request<RuleList>('/api/rule', {
     method: 'GET',
@@ -25,7 +25,7 @@ export async function rule(
 
 export const useRuleMutation = () => {
   return {
-    updateRule: useMutation(async(options?: Record<string, any>) => {
+    updateRule: useMutation(async (options?: Record<string, any>) => {
       const hide = message.loading('Configuring')
       try {
         await request({
@@ -36,14 +36,13 @@ export const useRuleMutation = () => {
         hide()
         message.success('Configuration is successful')
         return true
-      }
-      catch (error) {
+      } catch (error) {
         hide()
         message.error('Configuration failed, please try again!')
         return false
       }
     }).mutateAsync,
-    addRule: useMutation(async(options?: Record<string, any>) => {
+    addRule: useMutation(async (options?: Record<string, any>) => {
       const hide = message.loading('正在添加')
       try {
         await request({
@@ -54,14 +53,13 @@ export const useRuleMutation = () => {
         hide()
         message.success('Added successfully')
         return true
-      }
-      catch (error) {
+      } catch (error) {
         hide()
         message.error('Adding failed, please try again!')
         return false
       }
     }).mutateAsync,
-    removeRule: useMutation(async(fields: RuleListItem[]) => {
+    removeRule: useMutation(async (fields: RuleListItem[]) => {
       const hide = message.loading('Configuring')
       try {
         await request({
@@ -73,8 +71,7 @@ export const useRuleMutation = () => {
 
         message.success('Configuration is successful')
         return true
-      }
-      catch (error) {
+      } catch (error) {
         hide()
         message.error('Configuration failed, please try again!')
         return false

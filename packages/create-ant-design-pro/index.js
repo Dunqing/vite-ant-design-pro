@@ -1,18 +1,13 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 
-// @ts-check
-const fs = require('fs')
-const path = require('path')
 // Avoids autoconversion to number of the project name by defining that the args
 // non associated with an option ( _ ) needs to be parsed as a string. See #4606
 const argv = require('minimist')(process.argv.slice(2), { string: ['_'] })
 const prompts = require('prompts')
-const {
-  yellow,
-  red,
-  reset,
-} = require('kolorist')
+const { yellow, red, reset } = require('kolorist')
+const fs = require('fs')
+const path = require('path')
 
 const cwd = process.cwd()
 
@@ -44,7 +39,7 @@ async function init() {
           name: 'projectName',
           message: reset('Project name:'),
           initial: defaultProjectName,
-          onState: state =>
+          onState: (state) =>
             (targetDir = state.value.trim() || defaultProjectName),
         },
         {
@@ -52,9 +47,10 @@ async function init() {
             !fs.existsSync(targetDir) || isEmpty(targetDir) ? null : 'confirm',
           name: 'overwrite',
           message: () =>
-            `${targetDir === '.'
-              ? 'Current directory'
-              : `Target directory "${targetDir}"`
+            `${
+              targetDir === '.'
+                ? 'Current directory'
+                : `Target directory "${targetDir}"`
             } is not empty. Remove existing files and continue?`,
         },
         {
@@ -71,7 +67,7 @@ async function init() {
           name: 'packageName',
           message: reset('Package name:'),
           initial: () => toValidPackageName(targetDir),
-          validate: dir =>
+          validate: (dir) =>
             isValidPackageName(dir) || 'Invalid package.json name',
         },
         {
@@ -92,10 +88,9 @@ async function init() {
         onCancel: () => {
           throw new Error(`${red('✖')} Operation cancelled`)
         },
-      },
+      }
     )
-  }
-  catch (cancelled) {
+  } catch (cancelled) {
     console.log(cancelled.message)
     return
   }
@@ -105,10 +100,8 @@ async function init() {
 
   const root = path.join(cwd, targetDir)
 
-  if (overwrite)
-    emptyDir(root)
-  else if (!fs.existsSync(root))
-    fs.mkdirSync(root)
+  if (overwrite) emptyDir(root)
+  else if (!fs.existsSync(root)) fs.mkdirSync(root)
 
   // determine template
   template = variant || template
@@ -121,15 +114,12 @@ async function init() {
     const targetPath = renameFiles[file]
       ? path.join(root, renameFiles[file])
       : path.join(root, file)
-    if (content)
-      fs.writeFileSync(targetPath, content)
-    else
-      copy(path.join(templateDir, file), targetPath)
+    if (content) fs.writeFileSync(targetPath, content)
+    else copy(path.join(templateDir, file), targetPath)
   }
 
   const files = fs.readdirSync(templateDir)
-  for (const file of files.filter(f => f !== 'package.json'))
-    write(file)
+  for (const file of files.filter((f) => f !== 'package.json')) write(file)
 
   const pkg = require(path.join(templateDir, 'package.json'))
 
@@ -141,8 +131,7 @@ async function init() {
   const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
 
   console.log('\nDone. Now run:\n')
-  if (root !== cwd)
-    console.log(`  cd ${path.relative(cwd, root)}`)
+  if (root !== cwd) console.log(`  cd ${path.relative(cwd, root)}`)
 
   switch (pkgManager) {
     case 'yarn':
@@ -159,15 +148,13 @@ async function init() {
 
 function copy(src, dest) {
   const stat = fs.statSync(src)
-  if (stat.isDirectory())
-    copyDir(src, dest)
-  else
-    fs.copyFileSync(src, dest)
+  if (stat.isDirectory()) copyDir(src, dest)
+  else fs.copyFileSync(src, dest)
 }
 
 function isValidPackageName(projectName) {
   return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(
-    projectName,
+    projectName
   )
 }
 
@@ -194,8 +181,7 @@ function isEmpty(path) {
 }
 
 function emptyDir(dir) {
-  if (!fs.existsSync(dir))
-    return
+  if (!fs.existsSync(dir)) return
 
   for (const file of fs.readdirSync(dir)) {
     const abs = path.resolve(dir, file)
@@ -203,8 +189,7 @@ function emptyDir(dir) {
     if (fs.lstatSync(abs).isDirectory()) {
       emptyDir(abs)
       fs.rmdirSync(abs)
-    }
-    else {
+    } else {
       fs.unlinkSync(abs)
     }
   }

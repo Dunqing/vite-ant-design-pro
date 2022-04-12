@@ -40,11 +40,14 @@ export default {
   'app.settings.security.set': 'সেট',
   'app.settings.security.bind': 'বাঁধাই',
   'app.settings.binding.taobao': 'বাঁধাই তাওবাও',
-  'app.settings.binding.taobao-description': 'বর্তমানে আনবাউন্ড তাওবাও অ্যাকাউন্ট',
+  'app.settings.binding.taobao-description':
+    'বর্তমানে আনবাউন্ড তাওবাও অ্যাকাউন্ট',
   'app.settings.binding.alipay': 'বাইন্ডিং আলিপে',
-  'app.settings.binding.alipay-description': 'বর্তমানে আনবাউন্ড আলিপে অ্যাকাউন্ট',
+  'app.settings.binding.alipay-description':
+    'বর্তমানে আনবাউন্ড আলিপে অ্যাকাউন্ট',
   'app.settings.binding.dingding': 'বাঁধাই ডিঙ্গটালক',
-  'app.settings.binding.dingding-description': 'বর্তমানে আনবাউন্ড ডিঙ্গটাল অ্যাকাউন্ট',
+  'app.settings.binding.dingding-description':
+    'বর্তমানে আনবাউন্ড ডিঙ্গটাল অ্যাকাউন্ট',
   'app.settings.binding.bind': 'বাঁধাই',
   'app.settings.notification.password': 'অ্যাকাউন্টের পাসওয়ার্ড',
   'app.settings.notification.password-description':
@@ -53,7 +56,8 @@ export default {
   'app.settings.notification.messages-description':
     'সিস্টেম বার্তাগুলি স্টেশন চিঠির আকারে জানানো হবে',
   'app.settings.notification.todo': 'করণীয় বিজ্ঞপ্তি',
-  'app.settings.notification.todo-description': 'করণীয় তালিকাটি স্টেশন থেকে চিঠি আকারে জানানো হবে',
+  'app.settings.notification.todo-description':
+    'করণীয় তালিকাটি স্টেশন থেকে চিঠি আকারে জানানো হবে',
   'app.settings.open': 'খোলা',
   'app.settings.close': 'বন্ধ',
-};
+}
