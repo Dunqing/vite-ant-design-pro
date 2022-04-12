@@ -11,9 +11,10 @@
 - TypeScript: A language for application-scale JavaScript
 - Neat Design: Follow Ant Design specification
 - Common Templates: Typical templates for enterprise applications
-- International: Based on react-intl
 - Responsive: Designed for variable screen sizes
 - Theming: Customizable theme with simple config
+- State Management: Using react-query
+- International: Based on react-intl
 - Router: Based on react-router-dom@6
 - Best Practices: Solid workflow to make your code healthy
 
