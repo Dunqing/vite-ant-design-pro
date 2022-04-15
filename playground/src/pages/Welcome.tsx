@@ -18,6 +18,12 @@ const Welcome: React.FC = () => {
   return (
     <PageContainer>
       <Card>
+        <Typography.Title>
+          <Typography.Link href="https://github.com/1247748612/vite-ant-design-pro">
+            This project is based on Vite, For more information please click
+            here
+          </Typography.Link>
+        </Typography.Title>
         <Alert
           message={intl.formatMessage({
             id: 'pages.welcome.alertMessage',
