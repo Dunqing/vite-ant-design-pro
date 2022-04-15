@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import antdLayout from 'vite-plugin-antd-layout'
+import momentToDayjs from 'unplugin-moment-to-dayjs/vite'
 import * as path from 'path'
 
 export default defineConfig({
@@ -29,5 +30,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), antdLayout()],
+  plugins: [react(), antdLayout(), momentToDayjs()],
 })

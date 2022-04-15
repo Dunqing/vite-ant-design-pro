@@ -23,6 +23,7 @@
     "react-query": "^3.34.19",
     "react-router-dom": "^6",
     "react-use": "^17.3.2",
+    "dayjs": "^1.11.1",
     "vite-plugin-antd-layout": "workspace:*"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "@vitejs/plugin-react": "^1.0.7",
     "less": "^4.1.2",
     "typescript": "^4.5.4",
+    "unplugin-moment-to-dayjs": "^0.2.1",
     "vite": "^2.9.0"
   }
 }

@@ -109,6 +109,7 @@ importers:
       antd: ^4.19.5
       axios: ^0.26.1
       classnames: ^2.3.1
+      dayjs: ^1.8.28
       less: ^4.1.2
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -117,6 +118,7 @@ importers:
       react-router-dom: ^6
       react-use: ^17.3.2
       typescript: ^4.5.4
+      unplugin-moment-to-dayjs: ^0.2.1
       vite: ^2.9.0
       vite-plugin-antd-layout: workspace:*
     dependencies:
@@ -129,6 +131,7 @@ importers:
       antd: 4.19.5_react-dom@17.0.2+react@17.0.2
       axios: 0.26.1
       classnames: 2.3.1
+      dayjs: 1.11.0
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-intl: 5.24.8_react@17.0.2+typescript@4.6.2
@@ -143,6 +146,7 @@ importers:
       '@vitejs/plugin-react': 1.3.0
       less: 4.1.2
       typescript: 4.6.2
+      unplugin-moment-to-dayjs: 0.2.1_dayjs@1.11.0+vite@2.9.1
       vite: 2.9.1_less@4.1.2
 
 packages:
@@ -4295,6 +4299,43 @@ packages:
       detect-node: 2.1.0
     dev: false
 
+  /unplugin-moment-to-dayjs/0.2.1_dayjs@1.11.0+vite@2.9.1:
+    resolution: {integrity: sha512-9L2KZ7DG9GaLMAdJy5juincpgNsOzc5odkmS6wfr6LyugTtAUJfNu8CGkFKzBhH6yFMP1JGEG9ByCQMF5ni0JA==}
+    peerDependencies:
+      dayjs: ^1.11.0
+    dependencies:
+      dayjs: 1.11.0
+      unplugin: 0.6.2_vite@2.9.1
+    transitivePeerDependencies:
+      - esbuild
+      - rollup
+      - vite
+      - webpack
+    dev: true
+
+  /unplugin/0.6.2_vite@2.9.1:
+    resolution: {integrity: sha512-+QONc2uBFQbeo4x5mlJHjTKjR6pmuchMpGVrWhwdGFFMb4ttFZ4E9KqhOOrNcm3Q8NNyB1vJ4s5e36IZC7UWYw==}
+    peerDependencies:
+      esbuild: '>=0.13'
+      rollup: ^2.50.0
+      vite: ^2.3.0
+      webpack: 4 || 5
+    peerDependenciesMeta:
+      esbuild:
+        optional: true
+      rollup:
+        optional: true
+      vite:
+        optional: true
+      webpack:
+        optional: true
+    dependencies:
+      chokidar: 3.5.3
+      vite: 2.9.1_less@4.1.2
+      webpack-sources: 3.2.3
+      webpack-virtual-modules: 0.4.3
+    dev: true
+
   /unstated-next/1.1.0:
     resolution: {integrity: sha512-AAn47ZncPvgBGOvMcn8tSRxsrqwf2VdAPxLASTuLJvZt4rhKfDvUkmYZLGfclImSfTVMv7tF4ynaVxin0JjDCA==}
 
@@ -4422,6 +4463,15 @@ packages:
     resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
     dependencies:
       loose-envify: 1.4.0
+
+  /webpack-sources/3.2.3:
+    resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
+    engines: {node: '>=10.13.0'}
+    dev: true
+
+  /webpack-virtual-modules/0.4.3:
+    resolution: {integrity: sha512-5NUqC2JquIL2pBAAo/VfBP6KuGkHIZQXW/lNKupLPfhViwh8wNsu0BObtl09yuKZszeEUfbXz8xhrHvSG16Nqw==}
+    dev: true
 
   /which-boxed-primitive/1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}
