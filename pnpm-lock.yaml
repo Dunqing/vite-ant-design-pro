@@ -109,7 +109,7 @@ importers:
       antd: ^4.19.5
       axios: ^0.26.1
       classnames: ^2.3.1
-      dayjs: ^1.8.28
+      dayjs: ^1.11.1
       less: ^4.1.2
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -131,7 +131,7 @@ importers:
       antd: 4.19.5_react-dom@17.0.2+react@17.0.2
       axios: 0.26.1
       classnames: 2.3.1
-      dayjs: 1.11.0
+      dayjs: 1.11.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-intl: 5.24.8_react@17.0.2+typescript@4.6.2
@@ -146,7 +146,7 @@ importers:
       '@vitejs/plugin-react': 1.3.0
       less: 4.1.2
       typescript: 4.6.2
-      unplugin-moment-to-dayjs: 0.2.1_dayjs@1.11.0+vite@2.9.1
+      unplugin-moment-to-dayjs: 0.2.1_dayjs@1.11.1+vite@2.9.1
       vite: 2.9.1_less@4.1.2
 
 packages:
@@ -1551,6 +1551,10 @@ packages:
 
   /dayjs/1.11.0:
     resolution: {integrity: sha512-JLC809s6Y948/FuCZPm5IX8rRhQwOiyMb2TfVVQEixG7P8Lm/gt5S7yoQZmC8x1UehI9Pb7sksEt4xx14m+7Ug==}
+
+  /dayjs/1.11.1:
+    resolution: {integrity: sha512-ER7EjqVAMkRRsxNCC5YqJ9d9VQYuWdGt7aiH2qA5R5wt8ZmWaP2dLUSIK6y/kVzLMlmh1Tvu5xUf4M/wdGJ5KA==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -4299,12 +4303,12 @@ packages:
       detect-node: 2.1.0
     dev: false
 
-  /unplugin-moment-to-dayjs/0.2.1_dayjs@1.11.0+vite@2.9.1:
+  /unplugin-moment-to-dayjs/0.2.1_dayjs@1.11.1+vite@2.9.1:
     resolution: {integrity: sha512-9L2KZ7DG9GaLMAdJy5juincpgNsOzc5odkmS6wfr6LyugTtAUJfNu8CGkFKzBhH6yFMP1JGEG9ByCQMF5ni0JA==}
     peerDependencies:
       dayjs: ^1.11.0
     dependencies:
-      dayjs: 1.11.0
+      dayjs: 1.11.1
       unplugin: 0.6.2_vite@2.9.1
     transitivePeerDependencies:
       - esbuild
