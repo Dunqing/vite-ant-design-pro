@@ -24,7 +24,7 @@
     "lint": "eslint --fix .",
     "prepare": "husky install",
     "prepublishOnly": "pnpm run build",
-    "release": "bumpp packages/*/package.json --no-verify --commit --push --tag && pnpm publish --filter './packages'",
+    "release": "bumpp packages/*/package.json --no-verify --commit --push --tag && pnpm publish --filter ./packages",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
