@@ -5,13 +5,21 @@ import * as path from 'path'
 
 export default defineConfig({
   resolve: {
-    alias: {
-      '@': path.join(__dirname, 'src'),
-    },
+    alias: [
+      {
+        find: /^~/,
+        replacement: '',
+      },
+      {
+        find: '@',
+        replacement: path.resolve(__dirname, 'src'),
+      },
+    ],
   },
   css: {
     preprocessorOptions: {
       less: {
+        javascriptEnabled: true,
         additionalData: '@root-entry-name: default;',
       },
     },

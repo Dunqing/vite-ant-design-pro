@@ -1,18 +1,25 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import antdLayout from 'vite-plugin-antd-layout'
-import momentToDayjs from 'unplugin-moment-to-dayjs/vite'
 import * as path from 'path'
 
 export default defineConfig({
   resolve: {
-    alias: {
-      '@': path.join(__dirname, 'src'),
-    },
+    alias: [
+      {
+        find: /^~/,
+        replacement: '',
+      },
+      {
+        find: '@',
+        replacement: path.resolve(__dirname, 'src'),
+      },
+    ],
   },
   css: {
     preprocessorOptions: {
       less: {
+        javascriptEnabled: true,
         additionalData: '@root-entry-name: default;',
       },
     },
@@ -30,5 +37,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), antdLayout(), momentToDayjs()],
+  plugins: [react(), antdLayout()],
 })

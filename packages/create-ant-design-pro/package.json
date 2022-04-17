@@ -3,7 +3,15 @@
   "version": "0.0.3",
   "packageManager": "pnpm@6.32.3",
   "description": "",
-  "keywords": [],
+  "keywords": [
+    "create",
+    "ant-design-pro",
+    "vite",
+    "antd",
+    "antd admin",
+    "vite antd",
+    "vite antd admin"
+  ],
   "homepage": "https://vite-ant-design-pro.vercel.app",
   "bugs": {
     "url": "https://github.com/1247748612/vite-ant-design-pro/issues"
