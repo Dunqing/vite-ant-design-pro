@@ -50,56 +50,58 @@ const Layout = (props: LayoutProps) => {
   const navigate = useNavigate()
 
   return (
-    <ProLayout
-      title="Ant Design Pro"
-      route={{ routes }}
-      location={location}
-      navTheme="dark"
-      siderWidth={256}
-      onMenuHeaderClick={(e) => {
-        e.stopPropagation()
-        e.preventDefault()
-        navigate('/')
-      }}
-      menuItemRender={(menuItemProps, defaultDom) => {
-        if (menuItemProps.isUrl) return defaultDom
+    <Suspense fallback="icon loading ~~~">
+      <ProLayout
+        title="Ant Design Pro"
+        route={{ routes: realRoutes }}
+        location={location}
+        navTheme="dark"
+        siderWidth={256}
+        onMenuHeaderClick={(e) => {
+          e.stopPropagation()
+          e.preventDefault()
+          navigate('/')
+        }}
+        menuItemRender={(menuItemProps, defaultDom) => {
+          if (menuItemProps.isUrl) return defaultDom
 
-        if (menuItemProps.path && location.pathname !== menuItemProps.path) {
-          return (
-            <Link to={menuItemProps.path} target={menuItemProps.target}>
-              {defaultDom}
-            </Link>
-          )
+          if (menuItemProps.path && location.pathname !== menuItemProps.path) {
+            return (
+              <Link to={menuItemProps.path} target={menuItemProps.target}>
+                {defaultDom}
+              </Link>
+            )
+          }
+          return defaultDom
+        }}
+        disableContentMargin
+        fixSiderbarcomponent
+        fixedHeader
+        itemRender={(route) => (
+          <Link to={route.path}>{route.breadcrumbName}</Link>
+        )}
+        {...layoutRestProps}
+        rightContentRender={
+          rightContentRender !== false &&
+          ((layoutProps) => {
+            if (rightContentRender) return rightContentRender(layoutProps)
+            return renderRightContent?.(rightContentProps)
+          })
         }
-        return defaultDom
-      }}
-      disableContentMargin
-      fixSiderbarcomponent
-      fixedHeader
-      itemRender={(route) => (
-        <Link to={route.path}>{route.breadcrumbName}</Link>
-      )}
-      {...layoutRestProps}
-      rightContentRender={
-        rightContentRender !== false &&
-        ((layoutProps) => {
-          if (rightContentRender) return rightContentRender(layoutProps)
-          return renderRightContent?.(rightContentProps)
-        })
-      }
-    >
-      <Suspense fallback={fallback}>
-        <Exception matches={matchResult}>
-          {childrenRender(
-            <>
-              {children}
-              {routesElement}
-            </>,
-            props
-          )}
-        </Exception>
-      </Suspense>
-    </ProLayout>
+      >
+        <Suspense fallback={fallback}>
+          <Exception matches={matchResult}>
+            {childrenRender(
+              <>
+                {children}
+                {routesElement}
+              </>,
+              props
+            )}
+          </Exception>
+        </Suspense>
+      </ProLayout>
+    </Suspense>
   )
 }
 

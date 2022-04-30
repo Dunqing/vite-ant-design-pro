@@ -22,10 +22,14 @@
       "require": "./dist/index.js",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
+    },
+    "./src": {
+      "import": "./src/index.tsx"
     }
   },
   "files": [
     "dist",
+    "src",
     "*.ts",
     "client.d.ts"
   ],

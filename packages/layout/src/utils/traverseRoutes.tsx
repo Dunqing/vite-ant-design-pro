@@ -16,14 +16,14 @@ export const traverseRoutes = (
 
   return routes?.map((route) => {
     const { redirect } = route
-    let { element, component } = route
+    let { element, component, icon } = route
 
     if (typeof component === 'string') {
       // remove ./ or ../
       const name = component.replace(/^\.\.?\//, '')
 
       if (clearCache === true || !ComponentKeys.length) {
-        // FIXME: HACK dynamic import
+        ComponentMemo = import.meta.glob('$ROOT/**/*.tsx')
         ComponentKeys = Object.keys(ComponentMemo)
       }
 
@@ -43,10 +43,20 @@ export const traverseRoutes = (
     if (redirect !== undefined)
       element = <Navigate replace to={redirect}></Navigate>
 
+    if (typeof icon === 'string') {
+      const iconName =
+        (icon as string).slice(0, 1).toUpperCase() + (icon as string).slice(1)
+      const IconComponent = lazy(
+        () => import(`@ant-design/icons/es/icons/${iconName}Outlined`)
+      )
+      icon = <IconComponent />
+    }
+
     return {
       ...route,
       component,
       element,
+      icon,
       children: traverseRoutes(route.children),
     }
   }) as RoutesType

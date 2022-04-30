@@ -40,9 +40,10 @@
   "dependencies": {
     "@babel/types": "^7.17.0",
     "@types/react": "^17.0.43",
-    "vite": "^2.9.0",
+    "ant-design-pro-layout": "workspace:*",
     "magic-string": "^0.26.1",
-    "ant-design-pro-layout": "*"
+    "vite": "^2.9.0",
+    "vite-plugin-dynamic-import-module": "^0.2.1"
   },
   "peerDependencies": {
     "ant-design-pro-layout": "*"
