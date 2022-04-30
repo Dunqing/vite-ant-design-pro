@@ -35,8 +35,6 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "vite build",
-    "dev": "vite build --watch",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm run build"
   },
