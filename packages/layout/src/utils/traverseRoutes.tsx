@@ -43,6 +43,19 @@ export const traverseRoutes = (
     if (redirect !== undefined)
       element = <Navigate replace to={redirect}></Navigate>
 
+    return {
+      ...route,
+      component,
+      element,
+      children: traverseRoutes(route.children),
+    }
+  }) as RoutesType
+}
+
+export const traverseRoutesReplaceIcon = (routes?: RoutesType): RoutesType => {
+  return routes?.map((route) => {
+    let { icon } = route
+
     if (typeof icon === 'string') {
       const iconName =
         (icon as string).slice(0, 1).toUpperCase() + (icon as string).slice(1)
@@ -54,8 +67,6 @@ export const traverseRoutes = (
 
     return {
       ...route,
-      component,
-      element,
       icon,
       children: traverseRoutes(route.children),
     }

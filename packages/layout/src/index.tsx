@@ -4,6 +4,7 @@ import {
   renderMatches,
   renderRightContent,
   traverseRoutes,
+  traverseRoutesReplaceIcon,
 } from './utils'
 import ProLayout from '@ant-design/pro-layout'
 import { Suspense, useMemo } from 'react'
@@ -21,15 +22,24 @@ const Layout = (props: LayoutProps) => {
     children,
     rightContentRender,
     childrenRender = (c) => c,
-    routes,
     ...restProps
   } = props
 
-  const realRoutes = useMemo(() => traverseRoutes(routes, true), [routes])
+  // menu routes
+  const menusRoutes = useMemo(
+    () => traverseRoutesReplaceIcon(props.routes),
+    [props.routes]
+  )
+
+  const routes = useMemo(
+    () => traverseRoutes(props.routes, true),
+    [props.routes]
+  )
 
   const location = useLocation()
 
-  const matchResult = matchRoutes(realRoutes, location)
+  const matchResult = matchRoutes(routes, location)
+
   const routesElement = renderMatches(matchResult)
 
   const layoutRestProps: BasicLayoutProps & {
@@ -53,7 +63,7 @@ const Layout = (props: LayoutProps) => {
     <Suspense fallback="icon loading ~~~">
       <ProLayout
         title="Ant Design Pro"
-        route={{ routes: realRoutes }}
+        route={{ menusRoutes }}
         location={location}
         navTheme="dark"
         siderWidth={256}
