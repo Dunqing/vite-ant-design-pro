@@ -63,7 +63,7 @@ const Layout = (props: LayoutProps) => {
     <Suspense fallback="icon loading ~~~">
       <ProLayout
         title="Ant Design Pro"
-        route={{ menusRoutes }}
+        route={{ routes: menusRoutes }}
         location={location}
         navTheme="dark"
         siderWidth={256}
