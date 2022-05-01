@@ -51,12 +51,3 @@ ReactDOM.render(
 </HashRouter>
 )
 ```
-
-### Dependencies
-
-- react
-- react-dom
-- antd
-- @ant-design/icons
-- @ant-design/pro-layout
-- react-router-dom
