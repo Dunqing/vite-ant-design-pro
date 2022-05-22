@@ -16,7 +16,7 @@ export const traverseRoutes = (
 
   return routes?.map((route) => {
     const { redirect } = route
-    let { element, component, icon } = route
+    let { element, component } = route
 
     if (typeof component === 'string') {
       // remove ./ or ../
