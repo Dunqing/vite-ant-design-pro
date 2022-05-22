@@ -13,5 +13,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "types": [
+      "vite/client"
+    ]
   }
 }
