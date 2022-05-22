@@ -35,6 +35,12 @@ export const routes = [
     ],
   },
   {
+    path: '/resume',
+    name: 'resume',
+    icon: 'book',
+    component: './Resume',
+  },
+  {
     name: 'list.table-list',
     path: '/list',
     icon: 'table',
