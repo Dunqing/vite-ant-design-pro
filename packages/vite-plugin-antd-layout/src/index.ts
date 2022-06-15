@@ -4,7 +4,7 @@ import dynamicImportModule from 'vite-plugin-dynamic-import-module'
 import path, { dirname } from 'path'
 import type { Plugin, ResolvedConfig } from 'vite'
 
-const name = 'ant-design-pro-layout/src'
+const name = 'ant-design-pro-layout'
 
 export default function antdLayout(): Plugin[] {
   const virtualModuleId = 'virtual:antd-layout'
@@ -17,11 +17,6 @@ export default function antdLayout(): Plugin[] {
     {
       name: 'vite-plugin-antd-layout',
       enforce: 'pre',
-      config: () => ({
-        resolve: {
-          dedupe: ['vite-plugin-antd-layout'],
-        },
-      }),
       configResolved(_config) {
         config = _config
       },
@@ -31,14 +26,12 @@ export default function antdLayout(): Plugin[] {
       async load(id) {
         if (id === virtualModuleId) {
           modulePath = (await this.resolve(name))?.id
-          modulePath = modulePath ?? require.resolve(name).replace(/\..+/, '')
+          modulePath = modulePath ?? require.resolve(name)
           const code = `export { default } from ${JSON.stringify(modulePath)};`
           return { code, map: new MagicString(code).generateMap() }
         }
       },
       transform(code, id) {
-        // F:/github/vite-plugin-antd-layout/packages/layout/src/utils/traverseRoutes.tsx
-
         if (modulePath && id.includes(dirname(modulePath))) {
           const ms = new MagicString(code)
           ms.replace(

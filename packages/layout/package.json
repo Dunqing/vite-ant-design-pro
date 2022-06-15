@@ -14,17 +14,17 @@
     "type": "git",
     "url": "git+https://github.com/1247748612/vite-ant-design-pro.git"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./src/index.tsx",
+  "module": "./src/index.tsx",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "import": "./src/index.tsx",
+      "require": "./src/index.tsx"
     },
     "./src": {
-      "import": "./src/index.tsx"
+      "import": "./src/index.tsx",
+      "require": "./src/index.tsx"
     }
   },
   "files": [
