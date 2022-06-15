@@ -33,7 +33,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsup-node",
-    "dev": "pnpm run build -- --watch",
+    "dev": "pnpm run build --watch",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm run build"
   },
