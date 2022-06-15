@@ -7,13 +7,13 @@
   "keywords": [],
   "homepage": "https://vite-ant-design-pro.vercel.app",
   "bugs": {
-    "url": "https://github.com/1247748612/vite-ant-design-pro/issues"
+    "url": "https://github.com/Dunqing/vite-ant-design-pro/issues"
   },
   "license": "MIT",
   "author": "dengqing <dengqing0821@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1247748612/vite-ant-design-pro.git"
+    "url": "git+https://github.com/Dunqing/vite-ant-design-pro.git"
   },
   "sideEffects": false,
   "scripts": {
