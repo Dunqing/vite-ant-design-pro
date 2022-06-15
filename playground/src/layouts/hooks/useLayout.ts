@@ -1,3 +1,4 @@
+import { SettingDrawerProps } from '@ant-design/pro-layout'
 import { ConfigProvider } from 'antd'
 import { useEffect } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
@@ -5,7 +6,7 @@ import { useLocalStorage } from 'react-use'
 
 export const LAYOUT_STORAGE_KEY = 'VITE_ANT_DESIGN_PRO_LAYOUT'
 
-const initialState = {
+const initialState: SettingDrawerProps['settings'] & Record<string, any> = {
   locale: 'zh-CN',
   siderWidth: 208,
   navTheme: 'light',
@@ -24,7 +25,6 @@ const initialState = {
   pwa: false,
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
 }
-
 export const useLayout = () => {
   const [local, ...rest] = useLocalStorage(LAYOUT_STORAGE_KEY, initialState)
 

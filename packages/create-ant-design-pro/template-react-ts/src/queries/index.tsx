@@ -9,7 +9,7 @@ const queryClient = new QueryClient({
         return response.data
       },
       queryFn: ({ queryKey }) => {
-        return request(queryKey[0])
+        return request(queryKey[0] as any)
       },
     },
   },
