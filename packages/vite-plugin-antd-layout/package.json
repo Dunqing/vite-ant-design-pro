@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@babel/types": "^7.18.4",
-    "@types/react": "^17.0.45",
+    "@types/react": "^17.0.47",
     "ant-design-pro-layout": "workspace:*",
     "magic-string": "^0.26.2",
     "vite": "^2.9.12",

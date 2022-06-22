@@ -10,13 +10,13 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-descriptions": "^1.11.5",
-    "@ant-design/pro-form": "^1.69.3",
-    "@ant-design/pro-layout": "^6.38.8",
-    "@ant-design/pro-table": "^2.76.3",
+    "@ant-design/pro-descriptions": "^1.11.6",
+    "@ant-design/pro-form": "^1.69.4",
+    "@ant-design/pro-layout": "^6.38.9",
+    "@ant-design/pro-table": "^2.76.4",
     "@resumejs/components": "^0.2.3",
     "ant-design-pro-layout": "workspace:*",
-    "antd": "^4.21.2",
+    "antd": "^4.21.3",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.3",
@@ -29,12 +29,12 @@
     "vite-plugin-antd-layout": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^17.0.45",
+    "@types/react": "^17.0.47",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^17.0.17",
     "@vitejs/plugin-react": "^1.3.2",
     "less": "^4.1.3",
-    "typescript": "^4.7.3",
+    "typescript": "^4.7.4",
     "unplugin-moment-to-dayjs": "^0.2.1",
     "vite": "^2.9.12"
   }
