@@ -28,4 +28,5 @@ export interface LayoutProps extends BasicLayoutProps {
       name: string
     }
   }
+  rightContentProps?: LayoutProps['rightContentOptions']
 }

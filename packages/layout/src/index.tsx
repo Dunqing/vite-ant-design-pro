@@ -85,7 +85,7 @@ const Layout = (props: LayoutProps) => {
           return defaultDom
         }}
         disableContentMargin
-        fixSiderbarcomponent
+        fixSiderbar
         fixedHeader
         itemRender={(route) => (
           <Link to={route.path}>{route.breadcrumbName}</Link>
