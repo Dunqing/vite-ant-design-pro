@@ -38,11 +38,11 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@babel/types": "^7.18.7",
+    "@babel/types": "^7.18.8",
     "@types/react": "^17.0.47",
     "ant-design-pro-layout": "workspace:*",
     "magic-string": "^0.26.2",
-    "vite": "^2.9.13",
+    "vite": "^3.0.0",
     "vite-plugin-dynamic-import-module": "^0.2.1"
   },
   "peerDependencies": {

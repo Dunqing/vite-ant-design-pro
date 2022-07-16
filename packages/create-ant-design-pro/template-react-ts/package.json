@@ -9,17 +9,17 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-descriptions": "^1.11.7",
-    "@ant-design/pro-form": "^1.70.0",
-    "@ant-design/pro-layout": "^6.38.10",
-    "@ant-design/pro-table": "^2.77.0",
-    "antd": "^4.21.4",
+    "@ant-design/pro-descriptions": "^1.11.10",
+    "@ant-design/pro-form": "^1.70.3",
+    "@ant-design/pro-layout": "^6.38.13",
+    "@ant-design/pro-table": "^2.77.3",
+    "antd": "^4.21.6",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-intl": "^5.25.1",
-    "react-query": "^3.39.1",
+    "react-query": "^3.39.2",
     "react-router-dom": "^6.3.0",
     "react-use": "^17.4.0"
   },
@@ -27,10 +27,10 @@
     "@types/react": "^17.0.47",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^17.0.17",
-    "@vitejs/plugin-react": "^1.3.2",
+    "@vitejs/plugin-react": "^2.0.0",
     "less": "^4.1.3",
     "typescript": "^4.7.4",
-    "vite": "^2.9.13",
+    "vite": "^3.0.0",
     "vite-plugin-antd-layout": "latest"
   }
 }
