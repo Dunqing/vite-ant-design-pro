@@ -25,7 +25,6 @@ export default defineConfig({
     },
   },
   server: {
-    https: true,
     proxy: {
       // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
       '/api/': {
