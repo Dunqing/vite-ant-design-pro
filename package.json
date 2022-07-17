@@ -20,7 +20,7 @@
     "preinstall": "npx only-allow pnpm",
     "play": "pnpm run --filter ./playground dev",
     "dev": "pnpm --filter {packages/*} --parallel run dev",
-    "build": "pnpm run build --filter '*'",
+    "build": "pnpm --filter {packages/*} run build",
     "lint": "eslint --fix .",
     "prepare": "husky install",
     "prepublishOnly": "pnpm run build",
