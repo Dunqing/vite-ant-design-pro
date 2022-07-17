@@ -1,10 +1,8 @@
-import zhCN from './zh-CN'
+import zhCN from '../locales/zh-CN'
 import { useEffect, useState } from 'react'
 import { IntlProvider as Provider } from 'react-intl'
 import type { PropsWithChildren } from 'react'
 import { useLayout } from '@/layouts'
-
-export * from './components/SelectLang'
 
 export default function IntlProvider({ children }: PropsWithChildren<any>) {
   const [{ locale }] = useLayout()

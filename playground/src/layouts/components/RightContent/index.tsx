@@ -4,7 +4,7 @@ import HeaderSearch from '../HeaderSearch'
 import { Space } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import React from 'react'
-import { SelectLang } from '@/locales'
+import { SelectLang } from '@/components'
 import { useLayout } from '@/layouts'
 
 export type SiderTheme = 'light' | 'dark'

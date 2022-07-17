@@ -1,4 +1,4 @@
-import IntlProvider from './locales'
+import IntlProvider from '@/context/intl'
 import LayoutWrapper from './layouts'
 import QueryClientProvider from './queries'
 import React from 'react'

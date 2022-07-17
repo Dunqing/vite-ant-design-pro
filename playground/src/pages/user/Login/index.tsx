@@ -23,7 +23,7 @@ import {
   getFakeCaptcha,
   useLoginMutation,
 } from '@/services/ant-design-pro/login'
-import { SelectLang } from '@/locales'
+import { SelectLang } from '@/components'
 
 const LoginMessage: React.FC<{
   content: string
