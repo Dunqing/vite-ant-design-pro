@@ -3,8 +3,6 @@ import { Resume } from '@resumejs/components'
 import { PageHeaderWrapper } from '@ant-design/pro-layout'
 import { useIntl } from 'react-intl'
 import resume from './RESUME.md?raw'
-import '@resumejs/components/style'
-
 
 const Admin: React.FC = () => {
   const intl = useIntl()
