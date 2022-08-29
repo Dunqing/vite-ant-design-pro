@@ -2,6 +2,7 @@ import { defaultLangUConfigMap } from './constants'
 import { getAllLocales } from './utils'
 import React from 'react'
 import { Dropdown, Menu } from 'antd'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import type { CSSProperties } from 'react'
 import type { DropDownProps, MenuProps } from 'antd'
 import { useLayout } from '@/layouts'
@@ -70,34 +71,35 @@ export const SelectLang: React.FC<SelectLangProps> = (props) => {
       }
   )
 
-  const allLangUIConfig: LocalData[] =
+  const allLangUIConfig: ItemType[] = (
     postLocalesData?.(defaultLangUConfig) || defaultLangUConfig
+  ).map((item) => {
+    return {
+      ...item,
+      key: item.lang,
+      style: { minWidth: '160px' },
+      icon: (
+        <span
+          role="img"
+          aria-label={item?.label || 'en-US'}
+          style={{ marginRight: '8px' }}
+        >
+          {item?.icon || '🌐'}
+        </span>
+      ),
+    }
+  })
+
   const handleClick: MenuProps['onClick'] = onItemClick
     ? (params) => onItemClick(params)
     : changeLang
 
-  const menuItemStyle = { minWidth: '160px' }
-  const menuItemIconStyle = { marginRight: '8px' }
   const langMenu = (
-    <Menu selectedKeys={[locale]} onClick={handleClick}>
-      {allLangUIConfig.map((localeObj) => {
-        return (
-          <Menu.Item
-            key={localeObj.lang || localeObj.key}
-            style={menuItemStyle}
-          >
-            <span
-              role="img"
-              aria-label={localeObj?.label || 'en-US'}
-              style={menuItemIconStyle}
-            >
-              {localeObj?.icon || '🌐'}
-            </span>
-            {localeObj?.label || 'en-US'}
-          </Menu.Item>
-        )
-      })}
-    </Menu>
+    <Menu
+      selectedKeys={[locale]}
+      items={allLangUIConfig}
+      onClick={handleClick}
+    ></Menu>
   )
 
   const inlineStyle = {

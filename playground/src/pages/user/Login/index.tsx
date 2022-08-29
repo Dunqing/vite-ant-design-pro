@@ -59,7 +59,6 @@ const Login: React.FC = () => {
         })
         message.success(defaultLoginSuccessMessage)
         /** 此方法会跳转到 redirect 参数所在的位置 */
-        if (!history) return
         const query = new URLSearchParams(location.search)
         const redirect = query.get('redirect')
         navigate(redirect || '/')
