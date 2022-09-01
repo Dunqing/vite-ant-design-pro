@@ -22,7 +22,7 @@
 
 with NPM: 
 ```bash
-pnpm create ant-design-pro@latest
+npm create ant-design-pro@latest
 ```
 
 with Yarn: 
